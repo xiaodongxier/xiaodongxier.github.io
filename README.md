@@ -3,6 +3,6 @@
 xiaodongxier.github.io 
 -->
 
-# 域名出售
+# 小东西儿
 
-## 6z8z.com
+## xiaodongxier.com
