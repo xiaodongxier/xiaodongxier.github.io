@@ -1,0 +1,37 @@
+<!--
+ * @Date: 2021-01-07 15:39:15
+ * @LastEditTime: 2021-01-07 16:31:05
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_demo1</title>
+    <style>
+        input {
+            color: #000;
+        }
+        input::-webkit-input-placeholder{/* WebKit browsers */ color:#CCCCCC; }
+    </style>
+    <script src="../../static/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{mess}}</div>
+        <input type="text" name="" id="" v-model="mess" >
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                mess: "测试文本一",
+                number: "012345678"
+            }
+        })
+    </script>
+</body>
+</html>
