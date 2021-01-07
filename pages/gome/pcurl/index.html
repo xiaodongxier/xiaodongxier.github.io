@@ -1,0 +1,89 @@
+
+<!--
+ * @Date: 2020-12-21 17:42:27
+ * @LastEditTime: 2021-01-07 15:29:04
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!-- 
+  随便写的一个，仅供参考
+ -->
+ <!DOCTYPE html>
+ <html>
+ 
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="../../../static/image/favicon.ico">
+   <title>转换成PC链接小工具</title>
+   <script src="../../../static/js/vue.min.js"></script>
+   <style>
+     * {
+       padding: 0;
+       margin: 0;
+     }
+ 
+     body {
+       height: 100vh;
+       overflow: hidden;
+     }
+ 
+     #app span {
+       font-size: 16px;
+       color: #b53333;
+       letter-spacing: -2px;
+       font-weight: 900;
+       /* border: 1px solid; */
+       margin-right: 150px;
+     }
+ 
+     #app input {
+       border: 1px solid #000;
+       height: 20px;
+       margin-right: 150px;
+     }
+ 
+     #app a {
+       /* font-size: 14px; */
+       color: #5072ef;
+     }
+ 
+     #app .head {
+       background: #ccc;
+       padding: 5px;
+     }
+ 
+     .pc_iframe {
+       width: 100%;
+       height: calc(100vh - 40px);
+       border: 1px solid #000;
+     }
+   </style>
+ </head>
+ 
+ <body>
+   <div id="app">
+     <div class="head">
+       <span>使用方法：填入 9 码  或者  11 码  或者  10 码 或者 pop 码 或者 A 码 其中一个就行 (是码就行)</span>
+       码填在这里：<input type="text" v-model="number9">
+       <!-- 11码：<input type="text" v-model="number11" class="input2"> -->
+       pc详情链接：<a target="_blank" v-bind:href="url+number9+''+number11+'.html'">{{url}}{{number9}}.html</a>
+       <!-- app链接：<a target="_blank" v-bind:href="appurl+number9+''+number11+'.html'">{{appurl}}{{number9}}.html</a> -->
+     </div>
+     <iframe v-bind:src="url+number9+'.html'" frameborder="0" class="pc_iframe"></iframe>
+   </div>
+ 
+   <script>
+     var app = new Vue({
+       el: "#app",
+       data: {
+         number9: "",
+         number11: "",
+         url: "https://item.gome.com.cn/",
+         appurl:"https://item.m.gome.com.cn/product-"
+       }
+     })
+   </script>
+ </body>
+ </html>
