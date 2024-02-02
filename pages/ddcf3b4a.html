@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Gitalk  Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件，可以使用GitHub账号进行登录。  特性   使用 GitHub 登录   支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]   支持个人或组织   无干扰模式（设置 distractionFreeMode 为 true 开启">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客评论系统">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/ddcf3b4a.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="Gitalk  Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件，可以使用GitHub账号进行登录。  特性   使用 GitHub 登录   支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]   支持个人或组织   无干扰模式（设置 distractionFreeMode 为 true 开启">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitcdn.xiaodongxier.com/image/20230203102911.jpg">
+<meta property="article:published_time" content="2023-02-02T09:54:21.000Z">
+<meta property="article:modified_time" content="2023-02-03T02:33:59.904Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="评论系统">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitcdn.xiaodongxier.com/image/20230203102911.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo博客评论系统 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo博客评论系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-02 17:54" pubdate>
+          2023年2月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo博客评论系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a>Gitalk</h2><p><img src="https://gitcdn.xiaodongxier.com/image/20230203102911.jpg" srcset="/img/loading.gif" lazyload alt="Gitalk"></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">Gitalk</a> 是一个基于 GitHub Issue 和 Preact 开发的评论插件，可以使用GitHub账号进行登录。</p>
+</blockquote>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>  使用 GitHub 登录</li>
+<li>  支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]</li>
+<li>  支持个人或组织</li>
+<li>  无干扰模式（设置 distractionFreeMode 为 true 开启）</li>
+<li>  快捷键提交评论 （cmd|ctrl + enter）</li>
+</ul>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置[1]"></a>配置<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[hexo博客添加gitalk评论系统 ](https://www.cnblogs.com/qisi007/p/13731562.html)">[1]</span></a></sup></h3><h4 id="1-新建OAuth-App"><a href="#1-新建OAuth-App" class="headerlink" title="1. 新建OAuth App"></a>1. 新建OAuth App</h4><p>首先进入<code>github</code>,点击右上角头像【Settings】-&gt;【Developer settings】-&gt;【OAuth Apps】-&gt;【New OAuth App】进行基本配置（<strong>一定要细心，看清截图中的红字</strong>）。</p>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230203100627.png" srcset="/img/loading.gif" lazyload alt="New OAuth App"></p>
+<h4 id="2-生成Client-ID-和Client-Secret"><a href="#2-生成Client-ID-和Client-Secret" class="headerlink" title="2. 生成Client ID 和Client Secret"></a>2. 生成<code>Client ID</code> 和<code>Client Secret</code></h4><p>上面的填写成功之后进入,我们需要的是生成的<code>Client ID</code> 和<code>Client Secret</code></p>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230203100815.png" srcset="/img/loading.gif" lazyload alt="Client ID/Client Secret"></p>
+<h4 id="3-博客配置"><a href="#3-博客配置" class="headerlink" title="3. 博客配置"></a>3. 博客配置</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Gitalk</span><br><span class="hljs-comment"># 基于 GitHub Issues</span><br><span class="hljs-comment"># Based on GitHub Issues</span><br><span class="hljs-comment"># See: https://github.com/gitalk/gitalk#options</span><br><span class="hljs-attr">gitalk:</span><br>  <span class="hljs-attr">clientID:</span> <span class="hljs-string">xxxxxxx</span><br>  <span class="hljs-attr">clientSecret:</span> <span class="hljs-string">xxxxxxxxxxxxxx</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">uesername.github.io</span> <span class="hljs-comment"># 留言板内容需要存放的仓库名称</span><br>  <span class="hljs-attr">owner:</span> <span class="hljs-string">uesername</span> <span class="hljs-comment"># 留言板内容需要存放的仓库名称</span><br>  <span class="hljs-attr">admin:</span> [<span class="hljs-string">&#x27;uesername&#x27;</span>] <span class="hljs-comment"># 管理员用户</span><br>  <span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span><br>  <span class="hljs-attr">labels:</span> [<span class="hljs-string">&#x27;Gitalk&#x27;</span>] <span class="hljs-comment"># issue 的标签</span><br>  <span class="hljs-attr">perPage:</span> <span class="hljs-number">10</span> <span class="hljs-comment"># 每页展示条数</span><br>  <span class="hljs-attr">pagerDirection:</span> <span class="hljs-string">last</span>  <span class="hljs-comment"># 排序方式是从旧到新（first）还是从新到旧（last）</span><br>  <span class="hljs-attr">distractionFreeMode:</span> <span class="hljs-literal">false</span> <span class="hljs-comment">#类似Facebook评论框的全屏遮罩效果.</span><br>  <span class="hljs-attr">createIssueManually:</span> <span class="hljs-literal">false</span> <span class="hljs-comment">#如果当前页面没有相应的 isssue ，且登录的用户属于 admin，则会自动创建 issue。如果设置为 true，则显示一个初始化页面，创建 issue 需要点击 init 按钮。</span><br>  <span class="hljs-comment"># createIssueManually: true</span><br>  <span class="hljs-comment"># 默认 proxy 可能会失效，解决方法请见下方链接</span><br>  <span class="hljs-comment"># The default proxy may be invalid, refer to the links for solutions</span><br>  <span class="hljs-comment"># https://github.com/gitalk/gitalk/issues/429</span><br>  <span class="hljs-comment"># https://github.com/Zibri/cloudflare-cors-anywhere</span><br>  <span class="hljs-attr">proxy:</span> <span class="hljs-string">https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="utterances"><a href="#utterances" class="headerlink" title="utterances"></a>utterances</h2><p><img src="https://gitcdn.xiaodongxier.com/image/20230203102951.jpg" srcset="/img/loading.gif" lazyload alt="utterances"></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://utteranc.es/">utterances</a> 是基于 GitHub Issue 构建的轻量级评论小部件。 将 GitHub 问题用于博客评论、wiki 页面等！</p>
+</blockquote>
+<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>  <a target="_blank" rel="noopener" href="https://github.com/utterance">开源</a> 。 🙌</li>
+<li>  没有跟踪，没有广告，永远免费。 📡🚫</li>
+<li>  没有锁定。 所有存储在 GitHub 问题中的数据。 🔓</li>
+<li>  <a target="_blank" rel="noopener" href="http://primer.style/">使用Primer</a> 设计样式 ，这是为 GitHub 提供支持的 css 工具包。 💅</li>
+<li>  深色主题。 🌟</li>
+<li>  轻的。 香草打字稿。 没有适用于常绿浏览器的字体下载、JavaScript 框架或 polyfill。 🐦🌲</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="1-安装utterances应用-2"><a href="#1-安装utterances应用-2" class="headerlink" title="1. 安装utterances应用[2]"></a>1. 安装utterances应用<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[hexo+yilia集成utteranc评论系统 ](https://blog.csdn.net/weixin_41287260/article/details/103049579)">[2]</span></a></sup></h4><p>访问网址 <a target="_blank" rel="noopener" href="https://github.com/apps/utterances">https://github.com/apps/utterances</a> 授权，设置指定仓库即可。</p>
+<h4 id="2-博客配置-3"><a href="#2-博客配置-3" class="headerlink" title="2. 博客配置[3]"></a>2. 博客配置<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="[utteranc官网 ](https://utteranc.es/)">[3]</span></a></sup></h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Utterances</span><br><span class="hljs-comment"># 基于 GitHub Issues</span><br><span class="hljs-comment"># Based on GitHub Issues</span><br><span class="hljs-comment"># See: https://utteranc.es</span><br><span class="hljs-attr">utterances:</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">xiaodongxier/xiaodongxier.github.io</span> <span class="hljs-comment">#存放评论的issues的仓库名，可以和博客相同，也可以不同。</span><br>  <span class="hljs-attr">issue_term:</span> <span class="hljs-string">title</span> <span class="hljs-comment">#pathname #博客标题（推荐使用这个，因为上面两个涉及到网址，如果网址包含中文，会被转义，不方便看。）</span><br>  <span class="hljs-attr">label:</span> <span class="hljs-string">utterances</span> <span class="hljs-comment">#选择将分配给由话语创建的问题的标签。标签名称区分大小写。该标签必须存在于您的存储库中 - 话语无法附加不存在的标签。标签名称支持表情符号</span><br>  <span class="hljs-attr">theme:</span> <span class="hljs-string">github-light</span>  <span class="hljs-comment">#主题</span><br>  <span class="hljs-attr">theme_dark:</span> <span class="hljs-string">github-dark</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qisi007/p/13731562.html">hexo博客添加gitalk评论系统 </a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41287260/article/details/103049579">hexo+yilia集成utteranc评论系统 </a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://utteranc.es/">utteranc官网 </a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/" class="category-chain-item">工具相关</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="category-chain-item">博客搭建</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/">#Hexo</a>
+      
+        <a href="/tags/GitHub/">#GitHub</a>
+      
+        <a href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">#评论系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo博客评论系统</div>
+      <div>http://xiaodongxier.github.io/pages/ddcf3b4a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月3日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/7c8cbefe.html" title="科技爱好者周刊（第 240 期）：教育年限可以缩短吗？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊（第 240 期）：教育年限可以缩短吗？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/e9787dbf.html" title="Hexo博客评论系统">
+                        <span class="hidden-mobile">Hexo博客评论系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '1c64f94732751c4f84238d78cb334b44'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>

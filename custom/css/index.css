@@ -1,0 +1,53 @@
+.index-header a,* {
+  font-family: serif;
+}
+
+.post-content strong {
+  font-weight: 900;
+  border-bottom: 1px solid #000;
+}
+
+/* 新增标签背景 */
+.label-custom-tips {
+  background: #ff00008c;
+  color: #fff;
+}
+
+
+/* 新增标签背景 */
+.label-custom-success {
+  background: #36906d;
+  color: #fff;
+}
+
+.label-custom-success strong {
+  font-weight: 900;
+}
+
+
+/* 媒体查询 */
+
+/* 超小设备 (手机, 600px 以下屏幕设备) */
+@media only screen and (max-width: 600px) {
+  .youpaiyun img {width: 60vw;}
+}
+
+/* 小设备 (平板电脑和大型手机，600 像素及以上) */
+@media only screen and (min-width: 600px) {
+  .youpaiyun img {width: 60vw;}
+}
+
+/* 中型设备（平板电脑，768 像素及以上） */
+@media only screen and (min-width: 768px) {
+  .youpaiyun img {width: 60vw;}
+} 
+
+/* 大型设备（笔记本电脑/台式机，992 像素及以上） */
+@media only screen and (min-width: 992px) {
+  .youpaiyun img {width: 12vw;}
+} 
+
+/* 超大型设备（大型笔记本电脑和台式机，1200 像素及以上） */
+@media only screen and (min-width: 1200px) {
+  .youpaiyun img {width: 12vw;}
+}

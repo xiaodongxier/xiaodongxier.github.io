@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源（GitHub: ruanyf&#x2F;weekly），欢迎提交 issue，投稿或推荐科技内容。 周刊讨论区的帖子《谁在招人？》，提供大量程序员就业信息，欢迎访问或发布工作&#x2F;实习岗位。 封面图 2021世界建筑摄影大赛入围作品：重庆来福士广场。（via） 本周话题：新人优惠的风险很多 App 都有“新人优惠”、“首单优惠”，提供很诱人的条件，吸引新用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技爱好者周刊（第 182 期）：新人优惠的风险">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/b302748f.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源（GitHub: ruanyf&#x2F;weekly），欢迎提交 issue，投稿或推荐科技内容。 周刊讨论区的帖子《谁在招人？》，提供大量程序员就业信息，欢迎访问或发布工作&#x2F;实习岗位。 封面图 2021世界建筑摄影大赛入围作品：重庆来福士广场。（via） 本周话题：新人优惠的风险很多 App 都有“新人优惠”、“首单优惠”，提供很诱人的条件，吸引新用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202111/bg2021110101.jpg">
+<meta property="article:published_time" content="2021-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-06T08:47:32.754Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="科技爱好者周刊">
+<meta property="article:tag" content="阮一峰">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.beekka.com/blogimg/asset/202111/bg2021110101.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>科技爱好者周刊（第 182 期）：新人优惠的风险 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="科技爱好者周刊（第 182 期）：新人优惠的风险"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-01 00:00" pubdate>
+          2021年11月1日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">科技爱好者周刊（第 182 期）：新人优惠的风险</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这里记录每周值得分享的科技内容，周五发布。</p>
+<p>本杂志开源（GitHub: <a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly">ruanyf/weekly</a>），欢迎提交 issue，投稿或推荐科技内容。</p>
+<p>周刊讨论区的帖子<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2032">《谁在招人？》</a>，提供大量程序员就业信息，欢迎访问或发布工作/实习岗位。</p>
+<h2 id="封面图"><a href="#封面图" class="headerlink" title="封面图"></a>封面图</h2><p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110101.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>2021世界建筑摄影大赛入围作品：重庆来福士广场。（<a target="_blank" rel="noopener" href="https://edition.cnn.com/style/article/architectural-photography-awards-2021-shortlist/">via</a>）</p>
+<h2 id="本周话题：新人优惠的风险"><a href="#本周话题：新人优惠的风险" class="headerlink" title="本周话题：新人优惠的风险"></a>本周话题：新人优惠的风险</h2><p>很多 App 都有“新人优惠”、“首单优惠”，提供很诱人的条件，吸引新用户。</p>
+<p>最近，有一个<a target="_blank" rel="noopener" href="https://finance.sina.com.cn/chanjing/cyxw/2021-07-16/doc-ikqcfnca7224835.shtml">案件</a>跟“新人优惠”有关，很值得谈一下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110501.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>事情是这样的。2019年底，上海杨浦区某商场写字楼搞活动，只要是商场 App 的新用户，都可以获得500积分，抵扣一小时的商场停车费（价值人民币10元）。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110302.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>结果，写字楼里面120多个白领使用接码平台，反复注册新用户，申领积分抵扣停车费，让商场损失37万多元，最多一辆车抵扣的停车费超过万元。所谓“接码平台”，就是提供各种手机号，代接验证码，每条收取一定的费用。</p>
+<p>商场报警以后，警方找到了那120多位白领，不仅要他们补交停车费，还将其中金额较大的20多人以诈骗罪起诉，目前已有两人获刑。</p>
+<p>所以，大家知道了吧，滥用“新人优惠”可能会触犯法律，构成诈骗罪。</p>
+<p>但是，我对这个案件有些不一样的看法。我觉得，白领贪图小便宜固然不对，但是商场应该负大部分责任，它的损失很大程度上是自己造成的。</p>
+<p>商场设计这个活动时，就应该预料到，有人会用多个手机号，多次注册新用户领取优惠。但是，它没有设计任何预防措施，其实只要规定一个车牌号只能享受一次优惠，就能完全避免损失。等到事情真的发生了，它也没有第一时间终止活动，而是听任损失不断扩大。</p>
+<p>所以，商场自己的疏忽和消极应对，我觉得才是这件事的主要原因。只要设计活动方案时，稍微周全一点，就能避免这个漏洞，不会去考验人性了。法官如果判决，商场必须自己承担大部分损失，也是完全说得通的，而且还能警示其他 App。</p>
+<p>值得一提的是，警方在追缴停车费的过程中，还将开发运营“接码平台”的四个犯罪嫌疑人<a target="_blank" rel="noopener" href="https://news.sina.com.cn/c/2021-07-16/doc-ikqciyzk5864403.shtml">抓获</a>。</p>
+<blockquote>
+<p>“某大学软件学院在读研究生史某某，开发运营了一款专为用户提供虚拟手机号码及验证码服务的软件，在明知用户利用该软件骗取商家优惠福利后，仍积极提供支持，并从中非法牟利十万余元。</p>
+<p>近日，上海市杨浦区人民法院以犯帮助信息网络犯罪活动罪，判处被告人史某某有期徒刑六个月，罚金人民币一万元。”</p>
+</blockquote>
+<p>这件事告诉我们，程序员也是有风险的。开发接收短信的自动化工具，本身不违法，但是用户如果用于非法用途，就可能会被法律追责。所以，开发时一定要问清楚，用户用来干嘛。</p>
+<h2 id="P6-工程师必会的算法原理"><a href="#P6-工程师必会的算法原理" class="headerlink" title="P6 工程师必会的算法原理"></a>P6 工程师必会的算法原理</h2><p>P6 是阿里集团内部的“资深工程师”级别，也是对外招聘的主要级别。</p>
+<p>拥有几年工作经验、能够参与重大项目、但没有担任过主管的社招工程师，一般都会给 P6。特别优秀的校招毕业生，也会给 P6，以后再根据工作表现，进行晋升。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110405.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>软件工程师现在短缺，只要达到 P6 的标准，不管是阿里还是其他公司，通常都会录取。普通的程序员准备应聘和面试时，都是以 P6 为目标。</p>
+<p>P6 的招聘，最看重的是动手能力，但也会考察算法知识，看看应聘者是否有扎实的基础和潜力。一些性能要求高的项目，对算法知识的考察就会更多一些。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110406.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>本周介绍的课程，就是针对前端工程师的算法直播课 <strong>《P6 工程师必会的算法原理》</strong>。</p>
+<p>它用两个晚上的讲课，帮助找工作的同学补充算法知识，重点讲解 Vue 和 React 这两个框架背后的算法（比如 DOM Diff），并会针对性地介绍如何准备大厂面试。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110407.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>直播的上课时间是11月9日（下周二）和10日（下周三）的晚上8点。课程主办方是国内 IT 培训的独角兽企业“开课吧”，在课程之外，还会配备助教答疑，以及用于交流的学习讨论群，并提供幸运学员的简历修改。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110408.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>微信扫描上方的二维码，或点击<a target="_blank" rel="noopener" href="https://wx.kaikeba.com/xiaoke/market/landing-page/v2/1E59S4B4E9vbH1TrNnx?kol_ad_code=YZ6VFCQbMxN0fDdUJAh">这个链接</a>，了解课程详情并报名，仅需象征性支付 <strong>0.99元</strong> 报名费。听课的同学还会获赠前端的学习资料。</p>
+<h2 id="科技动态"><a href="#科技动态" class="headerlink" title="科技动态"></a>科技动态</h2><p>1、<a target="_blank" rel="noopener" href="https://news.mydrivers.com/1/779/779562.htm">巨型水稻</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021082911.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>新品种巨型水稻在重庆种植成功。这种水稻平均高度1.8米，最高超过2米，比普通水稻高出近一倍。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021082912.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>巨型稻由于体型大，能承载的穗粒也多，产量要多于普通水稻。但是，它最大的优势在于吃水很深，田里可以蓄60公分到80公分的水。这个深度就可以搞稻鱼共生的项目：养鱼，养虾，养蟹。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021082913.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>这样既提高农民的收入，又有利于形成生物循环：水稻为动物提供养料和微生物，而动物的排泄物又反过来供养水稻，最终实现化肥、农药、抗生素“零使用”。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.dezeen.com/2021/08/26/wind-catching-systems-floating-offshore-farm/">风力发电墙</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090108.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>平常看到的风力发电机，都是巨大的叶片在空中旋转。一家挪威公司另辟蹊径，发明了风力发电墙，采用一个网格状的钢架，上面安装了100多个小型风力涡轮发电机。</p>
+<p>这种墙高达300多米，跟埃菲尔铁塔差不多。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090109.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>该公司称，这样可以最大程度地利用风能。一面墙的发电量，相当于五个现有的最大的风力发电机，同时发电价格还可以减半。该公司计划未来三年内建成第一面这样的墙。</p>
+<p>3、<a target="_blank" rel="noopener" href="http://www.bj.xinhuanet.com/2021-08/11/c_1127749972.htm">“近零能耗”样板楼</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081104.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>国内首个“近零能耗”样板楼在北京通州区亮相。该楼基本不用外部能源，完全自身供能，支持空调和暖气，一年四季保持室温20摄氏度左右。</p>
+<p>楼里分别安装了地源热泵、空气源热泵，光伏发电板等能源装置。热泵从地下“捕捉”地热能，从空气中“吸收”空气能，光伏发电板则通过太阳能发电。然后，地下一共埋了5个储能罐，将这些能量储存起来，为整栋楼供电、冬季供热、夏季降温。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://www.zeitmedical.com/">防中风头带</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081307.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>中风就是脑血管突然破裂，是一种非常危险的突发疾病。一旦发病，轻者脑神经损伤，重者大脑功能丧失，甚至丧命。更可怕的是，中风很难提前发现，发病后必须立刻救治，一分钟也拖不得。</p>
+<p>一家美国公司发明了防中风头带，会监控脑电波，一旦发现脑电波出现类似中风的迹象，会立刻向配对的手机发送警报，然后手机自动拨打急救电话，报告坐标。</p>
+<p>除了防中风，它也可以用于脑电波的24小时监控。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081308.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>5、<a target="_blank" rel="noopener" href="https://sifted.eu/articles/bioo-batteries-electricity-soil/">土壤发电</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090507.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一家西班牙公司宣布，开发出了“土壤发电”技术。土壤里面的微生物分解有机物，会释放出电子，从而产生能量。只要把阳极和阴极插在土壤里面，就可以获取电流。</p>
+<p>这种电流非常微弱，该公司说，一平方米的肥沃土壤每年可以产生200wh的电能（0.2度电）。这点电能没有其他用途，只能为农田里面的传感器供电，测量土壤湿度、pH 值和气温等，可以解决这些装置的供电问题，降低成本。它还可以为公园绿地里面的 LED 小灯泡供电。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090508.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>6、<a target="_blank" rel="noopener" href="https://www.theregister.com/2021/09/04/bluetooth_headphones_tracking_oslo/">蓝牙追踪</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090601.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>每个蓝牙设备都有一个硬件地址，连接时可以获取。很早就有人提出，可以使用这个地址，追踪用户。为了避免被追踪，每次蓝牙连接时，这个地址都应该随机化，但是很少有厂商这么做。</p>
+<p>一个挪威大学生将这作为自己的业余项目，看看现实中能不能做到追踪用户。他在挪威首都奥斯陆骑了12天自行车，共计300公里，收集一路上的蓝牙设备信号。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110502.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>他一共发现了9,149个独特的蓝牙设备，其中129个蓝牙耳机被探测到了多次。他将每个设备的发现地点画上地图，其中一个耳机还真的确认了所有者。所以，通过蓝牙追踪用户是可能的，门卫、停车场这样的地方，如果部署了蓝牙追踪，完全可以了解用户的动态。</p>
+<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><p>1、<a target="_blank" rel="noopener" href="https://zhidx.com/p/301575.html">张忠谋演讲：经营人的学习与成长</a>（中文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021103001.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>台积电创始人张忠谋的最新演讲，介绍他怎么创立和经营管理台积电。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/429247683">解读国家科学技术大奖</a>（中文）</p>
+<p>通过国家科学技术大奖，可以知道我国的重大科技突破点在哪里，看出政府的导向。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://www.guancha.cn/ZhangZhongZuo/2021_11_03_613334.shtml">ADS-B 信号不能对境外提供</a>（中文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202111/bg2021110402.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>ADS-B 是飞机发出的广播信号，明码对外发送自己的位置、高度、速度、航向等信息。连续接收信号，就可以描绘出飞机的航行轨迹，并实时获取其飞行状态。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://yonatankra.com/how-to-find-a-unique-number-in-a-list-of-pairs/">如何找到数组里面的唯一数字</a>（英文）</p>
+<p>本文介绍一道简单的算法题：数组的所有成员都成对出现，只有一个成员除外（比如<code>[1,3,17,3,1]</code>），如何快速找到这个成员。</p>
+<p>5、<a target="_blank" rel="noopener" href="https://davidwalsh.name/css-accent-color">CSS 属性 accent-color</a>（英文）</p>
+<p>本文介绍一个新的 CSS 属性<code>accent-color</code>，可以设置表单的选择框控件（checkbox 或 radio）选中时的颜色。</p>
+<p>6、<a target="_blank" rel="noopener" href="https://www.innoq.com/de/blog/nginx-ssi-env/">NGINX 如何将环境变量注入网页</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021093006.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>NGINX 可以向网页写入内容，本文演示应该怎么做。</p>
+<p>7、<a target="_blank" rel="noopener" href="https://threadreaderapp.com/thread/1445506673108406286.html">为什么数字藏品在技术上不可靠</a>（英文）</p>
+<p>数字藏品（NFT）是一种基于区块链的数字资产证明机制，目前非常热门。本文讨论了一些技术细节，认为它在技术上有缺陷，作为资产可能并不合适。</p>
+<p>8、<a target="_blank" rel="noopener" href="https://btao.org/2021/10/03/removing-from-google/">如何从谷歌搜索结果删除你的网页</a>（英文）</p>
+<p>本文介绍一个简单的方法，只要加入一行 HTML 代码，就可以从谷歌搜索结果里面，删除你的网页。</p>
+<p>9、<a target="_blank" rel="noopener" href="https://blog.doctave.com/2021/09/07/how-google-twitter-and-spotify-build-culture-of-documentation.html">Google、Twitter 和 Spotify 如何处理内部文档</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021090812.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>软件公司的内部文档，往往是一个痛点，要么根本没有文档，要么就是杂乱不堪，分散在代码、Word 文件、Confluence 等各处。软件公司越大，这个问题越严重，本文介绍三家大型互联网公司如何处理内部文档。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>1、<a target="_blank" rel="noopener" href="https://waydro.id/">Waydroid</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092301.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个 Linux 系统的安卓容器，可以让安卓应用在 Linux 桌面电脑的容器里面运行。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://fleek.co/">fleek</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092302.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个帮助用户将网站托管在 IPFS 网络的服务，提供免费账户。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://flat.whiteboard.agora.io/">Agora Flat</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021102904.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个前后端都开源的在线教室，企业可以用来作为自己的内部培训工具，或者对外的远程教学工具。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2019">@Leooeloel</a> 投稿）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021102905.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>4、<a target="_blank" rel="noopener" href="https://motion.dev/">Motion One</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092303.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个 JS 动画库，底层使用 Web Animations API，上层则是自己设计的简单易懂的语法，可以很轻松让网页产生动画效果。 </p>
+<p>5、<a target="_blank" rel="noopener" href="https://semi.design/zh-CN">Semi Design</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021103006.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>抖音前端团队推出的设计系统，支撑字节内部近千平台产品。目前提供50多个组件、国际化14种语言、支持 TypeScript、SSR 等特性。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2022">@shijiatongxue</a> 投稿）</p>
+<p>6、<a target="_blank" rel="noopener" href="https://github.com/linjc/smooth-signature">smooth-signature</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021103005.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>带笔锋的手写签名 JS 库，支持 PC /移动端使用，另有<a target="_blank" rel="noopener" href="https://github.com/linjc/mini-smooth-signature">小程序版</a>。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2020">@linjc</a> 投稿）</p>
+<p>7、<a target="_blank" rel="noopener" href="https://swaywm.org/">Sway</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092304.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Linux 系统的平铺式窗口管理器，完全兼容 i3。区别是，i3 底层的显示协议是 X11，而 Sway 是 Wayland。</p>
+<p>8、<a target="_blank" rel="noopener" href="https://devtool.tech/tiny-image">微图</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202110/bg2021103007.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个批量压缩图片的网页工具，纯浏览器端压缩，不经过服务器，速度较快。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2021">@shfshanyue</a> 投稿）</p>
+<p>9、<a target="_blank" rel="noopener" href="https://tool.graphics/geometric">Tool.Graphics</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092405.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>这个网站可以生成各种几何图形填充的随机图片，并且能够可以调节参数。</p>
+<p>10、<a target="_blank" rel="noopener" href="https://github.com/ken107/read-aloud">Read Aloud</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092413.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>开源的浏览器朗读插件，可以朗读整个网页或选定文本，支持40多种语言，包括中文。</p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>1、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E4%BC%A0%E7%BB%9F%E8%89%B2%E7%B3%BB">日本传统色系</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092110.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>维基百科资料，列出了日本古典文学里经常出现的颜色，常用于和服或其他日本传统艺术和手工艺品。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://foundation.mozilla.org/en/privacynotincluded/">安全的互联网产品</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202109/bg2021092214.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Mozil 基金会在官网上列出了，经过该组织审核，确认为安全的、可以保护用户隐私的硬件和软件名单。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://github.com/ibraheemdev/modern-unix">Modern Unix</a></p>
+<p>该仓库收集传统 Unix 命令行工具的现代替代品，比如 lds 替代 ls、ripgrep 替代 grep。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2017">@ameizi</a> 投稿）</p>
+<p>4、<a target="_blank" rel="noopener" href="https://github.com/chubin/awesome-console-services">awesome-console-services</a></p>
+<p>该仓库收集各种供命令行使用的外部服务，比如<code>curl ip-api.com</code>可以查看当前 IP 地址对应的地理位置。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2018">@ameizi</a> 投稿）</p>
+<p>5、<a target="_blank" rel="noopener" href="https://github.com/shadowcz007/awesome-metaverse">awesome-metaverse</a></p>
+<p>该仓库收集元宇宙相关资源。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/2023">@shadowcz007</a> 投稿）</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>1、<a target="_blank" rel="noopener" href="https://www.abandonedspaces.com/industry/motorola.html">废弃的摩托罗拉总部</a></p>
+<p>1976年，摩托罗拉公司将总部搬到了芝加哥郊区。</p>
+<p>手机就是在这里发明的，它使得摩托罗拉成为无线通信巨头。但是，这里也见证了，这家公司逐渐走下坡路，最终分崩离析。</p>
+<p>2007年至2009年，连续遭受重大亏损后，摩托罗拉决定拆分为两个独立的公司，随后决定将总部从郊区搬到芝加哥市中心。</p>
+<p>原来的总部被废弃后，2017年决定拆除，改建为多功能综合体。下面是拆除前的一些照片，墙上还留有没有撕掉的标语和宣传画，记录了这家公司的兴衰。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081417.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081418.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081419.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081420.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081421.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.universiteitleiden.nl/en/news/2020/04/how-mathematician-hendrik-lenstra-completed-an-unfinished-artwork-by-escher">埃舍尔未完成的画</a></p>
+<p>荷兰画家埃舍尔（1898年－1972年）以创作视觉错误绘画而闻名。</p>
+<p>在他晚年，有一幅作品描绘了一个观众正在画廊里观看画作，画廊的窗户与城市的街景融合在一起。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081504.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>不知道什么原因，这幅画的中心部分没有画，而是留出一个空白，埃舍尔写上了自己的签名。</p>
+<p>2000年，一个美国数学教授在飞机上翻看杂志，偶然看到了这幅画。他突然意识到，这是一个螺旋扩张，可以用数学公式表达。</p>
+<p>他就写了一个程序，让软件自动生成这幅画中间缺少的部分。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081503.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="文摘"><a href="#文摘" class="headerlink" title="文摘"></a>文摘</h2><p>1、<a target="_blank" rel="noopener" href="https://matt-rickard.com/hire-slope-not-intercept/">斜率比截距重要</a></p>
+<p>忘掉 y 轴的截距吧，长远来看，斜率是唯一重要的事情。</p>
+<p>如果 x 轴表示时间，y 轴表示你要实现的目标，那么实现目标的过程可以画成一条直线。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202108/bg2021081907.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>这条直线可以用两个变量描述：y 轴截距（直线与 y 轴的交点）和斜率（y 随时间变化的速度）。</p>
+<p>如果我们把 y 轴截距看成是你的起点，那么斜率就是你为了实现目标，而适应、学习和付出努力的前进速度。</p>
+<p><strong>即使一条线的起点远低于另一条线，只要它的斜率更大，终究会超越前一条线。</strong></p>
+<p>你可能听过这样的建议：做一个终身学习者，每天学一点，不断进步。很少有人能够遵循这条建议，因为在开始后的很长时间内，根本看不到有什么效果。时间周期越短，直线看起来越平坦，当你远远落后时，这是非常令人沮丧的。</p>
+<p>但是，只要坚持下去，保持向上的斜率，长期以后，你将远远地超越原来的人生道路。</p>
+<p>记住，短期总是比我们想象的要长，各种打击足以让你灰心丧气，但是 <strong>长期总是比我们想象的要短。</strong></p>
+<p>同一个道理，在招聘时，有潜力但经验不足的候选人，长期来看，比经验丰富但潜力不足的候选人，对公司更有帮助。</p>
+<p>总之，当事情没有达到你的目标时，不要放弃，每一个伟大的事业都始于一个小小的念头。学习一项新技能，每天进步一点点，短时间内，一切看起来都是老样子，但是随着时间的推移，改进会持续累积起来，进步会越来越明显。</p>
+<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>1、</p>
+<p>我很讨厌每个网站都使用 Discord 作为讨论区。</p>
+<p>这样很难搜索以前的内容，更糟的是，不太容易在 Discord 切换身份。我不愿意将在 Discord 使用的游戏爱好者身份，与咨询软件问题的用户身份混在一起。</p>
+<p>– <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=28550566">Hacker News 读者</a></p>
+<p>2、</p>
+<p>有些开源软件项目欢迎协作，并鼓励外部贡献，例如 Linux 内核。</p>
+<p>还有一些开源项目几乎与世隔绝，无法容忍外人插手，GIMP、GTK、Gnome 的维护者就属于后一类。除非你是内部集团的一部分，否则你的代码不会得到任何合并。</p>
+<p>– <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=28579444">Hacker News 读者</a></p>
+<p>3、</p>
+<p>现在的社会不是为了人的发展，而是人为了外部世界而发展，反过来了。</p>
+<p>– <a target="_blank" rel="noopener" href="https://cn.nytimes.com/china/20210714/lying-flat-in-china/">骆华忠</a>，摘自《纽约时报》对他的专访</p>
+<p>4、</p>
+<p>用户研究中，有一个众所周知的事实。如果你询问用户是否需要新功能，他们通常会大叫“是的”。毕竟谁会不想要更多的功能呢？</p>
+<p>但是，等到发布以后，你才意识到用户可能不使用这个功能。</p>
+<p>– <a target="_blank" rel="noopener" href="https://web.eecs.utk.edu/~azh/blog/featurestheywanted.html">《当用户从不使用他们要求的功能时》</a></p>
+<p>5、</p>
+<p>理财的核心原则，就是两句话：“增加收入，减少开支”。</p>
+<p>但是，这两句话相互矛盾，需要不同的技能。增加收入通常需要花钱，提高获利潜力。减少开支意味着对于投资新事物持有保守态度，这种心态会阻止你赚更多的钱。</p>
+<p>– <a target="_blank" rel="noopener" href="https://jonpauluritis.com/articles/my-top-10-money-rules/">《我的十条金钱规则》</a></p>
+<h2 id="历史上的本周"><a href="#历史上的本周" class="headerlink" title="历史上的本周"></a>历史上的本周</h2><p>2020年（第 131 期）：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2020/10/weekly-issue-131.html">你的头脑是二值逻辑，还是三值逻辑？</a></p>
+<p>2019年（第 79 期）：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/10/weekly-issue-79.html">我们的生活越来越依赖机器</a></p>
+<p>2018年（第 28 期）：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2018/10/weekly-issue-28.html">软件开发是真正的知识吗？</a></p>
+<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>这个周刊每周五发布，同步更新在<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog">阮一峰的网络日志</a>和<a target="_blank" rel="noopener" href="http://weixin.sogou.com/weixin?query=%E9%98%AE%E4%B8%80%E5%B3%B0%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97">微信公众号</a>。</p>
+<p>微信搜索“阮一峰的网络日志”或者扫描二维码，即可订阅。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202103/bg2021030402.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>（完）</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/" class="category-chain-item">科技爱好者周刊</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/">#科技爱好者周刊</a>
+      
+        <a href="/tags/%E9%98%AE%E4%B8%80%E5%B3%B0/">#阮一峰</a>
+      
+        <a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>科技爱好者周刊（第 182 期）：新人优惠的风险</div>
+      <div>http://xiaodongxier.github.io/pages/b302748f.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年11月1日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月6日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/e267cab4.html" title="科技爱好者周刊（第 183 期）：腾讯的员工退休福利">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊（第 183 期）：腾讯的员工退休福利</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/a9faf2d3.html" title="科技爱好者周刊（第 181 期）：移动支付应该怎么设计？">
+                        <span class="hidden-mobile">科技爱好者周刊（第 181 期）：移动支付应该怎么设计？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'fa5b8e87eab699a6000009668b4d8cfc'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>

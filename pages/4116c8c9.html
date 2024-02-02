@@ -1,0 +1,1291 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本章正式进入项目开发环节，将带大家完整的实现项目中的首页，涵盖的功能点包含header组件拆分、iconfont引入、多区块轮播、热销推荐及周末游等展示模块。  7-1 Vue项目首页 - header区域开发宽带750px按照iPhone6的2倍图 stylus 安装 Stylus 是一款 CSS 的预处理器，也就是我们常说的 CSS 框架  1npm i stylus --save   ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7章 项目实战 - 旅游网站首页开发">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/4116c8c9.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="本章正式进入项目开发环节，将带大家完整的实现项目中的首页，涵盖的功能点包含header组件拆分、iconfont引入、多区块轮播、热销推荐及周末游等展示模块。  7-1 Vue项目首页 - header区域开发宽带750px按照iPhone6的2倍图 stylus 安装 Stylus 是一款 CSS 的预处理器，也就是我们常说的 CSS 框架  1npm i stylus --save   ht">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitcdn.xiaodongxier.com/image/20230216143901.jpg">
+<meta property="article:published_time" content="2022-10-02T06:28:57.000Z">
+<meta property="article:modified_time" content="2023-02-20T06:49:41.286Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitcdn.xiaodongxier.com/image/20230216143901.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>第7章 项目实战 - 旅游网站首页开发 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="第7章 项目实战 - 旅游网站首页开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-02 14:28" pubdate>
+          2022年10月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          195 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">第7章 项目实战 - 旅游网站首页开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>本章正式进入项目开发环节，将带大家完整的实现项目中的首页，涵盖的功能点包含header组件拆分、iconfont引入、多区块轮播、热销推荐及周末游等展示模块。</p>
+</blockquote>
+<h2 id="7-1-Vue项目首页-header区域开发"><a href="#7-1-Vue项目首页-header区域开发" class="headerlink" title="7-1 Vue项目首页 - header区域开发"></a>7-1 Vue项目首页 - header区域开发</h2><p>宽带750px<br>按照iPhone6的2倍图</p>
+<h3 id="stylus-安装"><a href="#stylus-安装" class="headerlink" title="stylus 安装"></a>stylus 安装</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.stylus-lang.cn/">Stylus</a> 是一款 CSS 的预处理器，也就是我们常说的 CSS 框架</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">npm i stylus --save<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.stylus-lang.cn/">https://www.stylus-lang.cn</a><br>CSS的预处理框架，即将stylus转换为css使用, 可以使用变量</p>
+</blockquote>
+<h3 id="stylus-loader-安装"><a href="#stylus-loader-安装" class="headerlink" title="stylus-loader 安装"></a>stylus-loader 安装</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> stylus-loader <span class="hljs-attr">--save</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>让webpack理解stylus</p>
+</blockquote>
+<h3 id="局部组建使用"><a href="#局部组建使用" class="headerlink" title="局部组建使用"></a>局部组建使用</h3><p>组建下面声明局部组建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Home&#x27;</span>,<br>  <span class="hljs-attr">components</span>: &#123;<br>    <span class="hljs-title class_">HomeHeader</span>: <span class="hljs-title class_">HomeHeader</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>与下面相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Home&#x27;</span>,<br>  <span class="hljs-attr">components</span>: &#123;<br>    <span class="hljs-title class_">HomeHeader</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>home-header</code> == <code>HomeHeader</code></p>
+<blockquote>
+<p>scoped css样式只对当前组建生效</p>
+</blockquote>
+<blockquote>
+<p>1rem = html font-size = 50px<br>86/100 = .86rem</p>
+</blockquote>
+<h3 id="lang-quot-stylus-quot-报错"><a href="#lang-quot-stylus-quot-报错" class="headerlink" title="lang=&quot;stylus&quot;报错"></a><code>lang=&quot;stylus&quot;</code>报错</h3><blockquote>
+<p>报错截图</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106110729.jpg" srcset="/img/loading.gif" lazyload alt="报错"></p>
+<blockquote>
+<p>报错版本</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106110741.jpg" srcset="/img/loading.gif" lazyload alt="报错版本"></p>
+<blockquote>
+<p>解决方法：<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000025218065">https://segmentfault.com/q/1010000025218065</a> ，下面的评论</p>
+</blockquote>
+<blockquote>
+<p>stylus-loader 版本太高 把版本降到3.0.2就解决了最后贴一个GitHub issues的地址<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli/issues/5947">https://github.com/vuejs/vue-cli/issues/5947</a></p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106110753.jpg" srcset="/img/loading.gif" lazyload alt="解决办法"></p>
+<p>卸载命令 <code>npm uninstall stylus-loader</code></p>
+<p>安装3.0.2 版本</p>
+<p>安装指定版本命令 <code>npm i stylus-loader@3.0.2 --save</code></p>
+<h4 id="其他解决方法"><a href="#其他解决方法" class="headerlink" title="其他解决方法"></a>其他解决方法</h4><blockquote>
+<p>方法1</p>
+</blockquote>
+<ol>
+<li>不卸载之前的高版本</li>
+<li>运行命令 <code>npm i stylus-loader@3.0.2 --save</code></li>
+</ol>
+<blockquote>
+<p>方法2</p>
+</blockquote>
+<ol>
+<li>先在package.json里修改好指定版本号，然后输入</li>
+<li>运行命令 <code>npm update stylus-loader@3.0.2</code></li>
+</ol>
+<h3 id="scoped"><a href="#scoped" class="headerlink" title="scoped"></a>scoped</h3><p>限制 <code>css</code> 样式仅对当前组件有效</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-comment">/* css内容 */</span></span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs q">--<span class="hljs-built_in">save</span>和--<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>区别<br>一句话:--<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span>是你开发时依赖的东西，--<span class="hljs-built_in">save</span>是发布后还依赖的东西.<br></code></pre></td></tr></table></figure>
+
+<h4 id="注释事项"><a href="#注释事项" class="headerlink" title="注释事项"></a>注释事项</h4><ol>
+<li>代码缩减问题</li>
+<li>代码一行结束后面不能跟空格</li>
+</ol>
+<h2 id="7-2-Vue项目首页-iconfont-的使用和代码优化"><a href="#7-2-Vue项目首页-iconfont-的使用和代码优化" class="headerlink" title="7-2 Vue项目首页 - iconfont 的使用和代码优化"></a>7-2 Vue项目首页 - iconfont 的使用和代码优化</h2><h3 id="header-位置开发"><a href="#header-位置开发" class="headerlink" title="header 位置开发"></a>header 位置开发</h3><blockquote>
+<p><code>lang=&quot;stylus&quot;</code> css使用stylus语法</p>
+</blockquote>
+<blockquote>
+<p>scoped css样式只对当前组建生效</p>
+</blockquote>
+<h3 id="iconfont的使用"><a href="#iconfont的使用" class="headerlink" title="iconfont的使用"></a>iconfont的使用</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.iconfont.cn/"><code>iconfont</code></a> 引入</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./assets/styles/iconfont.css&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><blockquote>
+<p>css 色值放到一个变量里面 - 方便后期视觉主题维护 -提高可维护性，创建 <code>styl</code> 文件</p>
+</blockquote>
+<blockquote>
+<p>样式里面引入样式 ，css引用需要使用 @import</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106151546.jpg" srcset="/img/loading.gif" lazyload alt="styl引用"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style lang=&quot;stylus&quot; scoped&gt;<br><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;../../../assets/styles/varibles.styl&#x27;</span>;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">$bgColor = <span class="hljs-selector-id">#00bcd4</span><br></code></pre></td></tr></table></figure>
+
+<p><code>@</code> 代表 <code>src</code> 这个目录，但是在<code>css</code>引用其他的<code>css</code>使用的时候需要前面加<code>~</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style lang=&quot;stylus&quot; scoped&gt;<br><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~@/assets/styles/varibles.styl&#x27;</span>;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p><code>styles</code> 文件夹路径使用比较高，起一个别名代替，类似上面的 @，使代码变得更加精简</p>
+</blockquote>
+<p>找到<code>build/webpack.base.conf.js</code>这个文件(34行)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;.js&#x27;</span>, <span class="hljs-string">&#x27;.vue&#x27;</span>, <span class="hljs-string">&#x27;.json&#x27;</span>],<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&#x27;vue$&#x27;</span>: <span class="hljs-string">&#x27;vue/dist/vue.esm.js&#x27;</span>,<br>      <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;src&#x27;</span>),<br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>根据上面的写法可以为<code>styles</code>路径新增一个别名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;.js&#x27;</span>, <span class="hljs-string">&#x27;.vue&#x27;</span>, <span class="hljs-string">&#x27;.json&#x27;</span>],<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&#x27;vue$&#x27;</span>: <span class="hljs-string">&#x27;vue/dist/vue.esm.js&#x27;</span>,<br>      <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;src&#x27;</span>),<br>      <span class="hljs-string">&#x27;styles&#x27;</span>: <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;src/assets/styles&#x27;</span>),<br>    &#125;<br>  &#125;,<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106152256.jpg" srcset="/img/loading.gif" lazyload alt="Header.vue 中 ~styles使用"></p>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106152309.jpg" srcset="/img/loading.gif" lazyload alt="main.js中 styles使用"></p>
+<p>修改后会有报错提示</p>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230106152323.jpg" srcset="/img/loading.gif" lazyload alt="修改配置项报错"></p>
+<p><strong>这是因为项目修改配置项，需要重启下服务器</strong></p>
+<h3 id="课程总结"><a href="#课程总结" class="headerlink" title="课程总结"></a>课程总结</h3><ul>
+<li>如何在 <code>Header</code> 组建使用 <code>iconfont</code></li>
+<li>如何通过 <code>webpack</code> 对代码进行简化(文件夹路径)</li>
+<li>如果在 <code>styl</code> 定义变量并在 <code>css</code> 中使用变量</li>
+</ul>
+<h2 id="7-3-【讨论题】对于静态资源，如何处理会比较优雅呢？"><a href="#7-3-【讨论题】对于静态资源，如何处理会比较优雅呢？" class="headerlink" title="7-3 【讨论题】对于静态资源，如何处理会比较优雅呢？"></a>7-3 【讨论题】对于静态资源，如何处理会比较优雅呢？</h2><p><wangyongjie class="wang-success">课下阅读官方文档 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E5%A4%84%E7%90%86%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">处理静态资源</a> 章节内容 </wangyongjie></p>
+<p>静态资源可以通过两种方式进行处理：</p>
+<ul>
+<li><p>  在 JavaScript 被导入或在 template/CSS 中通过相对路径被引用。这类引用会被 webpack 处理。</p>
+</li>
+<li><p>  放置在 <code>public</code> 目录下或通过绝对路径被引用。这类资源将会直接被拷贝，而不会经过 webpack 的处理。</p>
+</li>
+</ul>
+<h3 id="从相对路径导入"><a href="#从相对路径导入" class="headerlink" title="从相对路径导入 #"></a>从相对路径导入 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E4%BB%8E%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%AF%BC%E5%85%A5">#</a></h3><p>当你在 JavaScript、CSS 或 <code>*.vue</code> 文件中使用相对路径 (必须以 <code>.</code> 开头) 引用一个静态资源时，该资源将会被包含进入 webpack 的依赖图中。在其编译过程中，所有诸如 <code>&lt;img src=&quot;...&quot;&gt;</code>、<code>background: url(...)</code> 和 CSS <code>@import</code> 的资源 URL <strong>都会被解析为一个模块依赖</strong>。</p>
+<p>例如，<code>url(./image.png)</code> 会被翻译为 <code>require(&#39;./image.png&#39;)</code>，而：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;./image.png&quot;</span>&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>将会被编译到：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">h</span>(<span class="hljs-string">&#x27;img&#x27;</span>, &#123; attrs: &#123; <span class="hljs-attribute">src</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./image.png&#x27;</span>) &#125;&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<p>在其内部，我们通过 webpack 的 <a target="_blank" rel="noopener" href="https://webpack.js.org/guides/asset-modules/">Assets Modules</a> 配置，用版本哈希值和正确的公共基础路径来决定最终的文件路径，并将小于 8KiB 的资源内联，以减少 HTTP 请求的数量。</p>
+<p>你可以通过 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#chainwebpack">chainWebpack</a> 调整内联文件的大小限制。例如，下列代码会将内联图片资源限制设置为 4KiB：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// vue.config.js</span><br><span class="hljs-keyword">module</span>.<span class="hljs-keyword">exports</span> = &#123;<br>  chainWebpack: config =&gt; &#123;<br>    config.<span class="hljs-keyword">module</span><br>      .rule(<span class="hljs-string">&#x27;images&#x27;</span>)<br>        .set(<span class="hljs-string">&#x27;parser&#x27;</span>, &#123;<br>          dataUrlCondition: &#123;<br>            maxSize: <span class="hljs-number">4</span> * <span class="hljs-number">1024</span> <span class="hljs-comment">// 4KiB</span><br>          &#125;<br>        &#125;)<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="URL-转换规则"><a href="#URL-转换规则" class="headerlink" title="URL 转换规则 #"></a>URL 转换规则 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#url-%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99">#</a></h3><ul>
+<li><p>  如果 URL 是一个绝对路径 (例如 <code>/images/foo.png</code>)，它将会被保留不变。</p>
+</li>
+<li><p>  如果 URL 以 <code>.</code> 开头，它会作为一个相对模块请求被解释且基于你的文件系统中的目录结构进行解析。</p>
+</li>
+<li><p>如果 URL 以 <code>~</code> 开头，其后的任何内容都会作为一个模块请求被解析。这意味着你甚至可以引用 Node 模块中的资源：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;~some-npm-package/foo.png&quot;</span>&gt;<br><br></code></pre></td></tr></table></figure></li>
+<li><p>  如果 URL 以 <code>@</code> 开头，它也会作为一个模块请求被解析。它的用处在于 Vue CLI 默认会设置一个指向 <code>&lt;projectRoot&gt;/src</code> 的别名 <code>@</code>。**(仅作用于模版中)**</p>
+</li>
+</ul>
+<h3 id="public-文件夹"><a href="#public-文件夹" class="headerlink" title="public 文件夹 #"></a><code>public</code> 文件夹 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9">#</a></h3><p>任何放置在 <code>public</code> 文件夹的静态资源都会被简单的复制，而不经过 webpack。你需要通过绝对路径来引用它们。</p>
+<p>注意我们推荐将资源作为你的模块依赖图的一部分导入，这样它们会通过 webpack 的处理并获得如下好处：</p>
+<ul>
+<li>  脚本和样式表会被压缩且打包在一起，从而避免额外的网络请求。</li>
+<li>  文件丢失会直接在编译时报错，而不是到了用户端才产生 404 错误。</li>
+<li>  最终生成的文件名包含了内容哈希，因此你不必担心浏览器会缓存它们的老版本。</li>
+</ul>
+<p><code>public</code> 目录提供的是一个<strong>应急手段</strong>，当你通过绝对路径引用它时，留意应用将会部署到哪里。如果你的应用没有部署在域名的根部，那么你需要为你的 URL 配置 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#publicpath">publicPath</a> 前缀：</p>
+<ul>
+<li><p>在 <code>public/index.html</code> 或其它通过 <code>html-webpack-plugin</code> 用作模板的 HTML 文件中，你需要通过 <code>&lt;%= BASE_URL %&gt;</code> 设置链接前缀：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;icon&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;&lt;%= BASE_URL %&gt;favicon.ico&quot;</span>&gt;<br><br></code></pre></td></tr></table></figure></li>
+<li><p>在模板中，你首先需要向你的组件传入基础 URL：</p>
+  <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-class"><span class="hljs-keyword">data</span> () &#123;</span><br><span class="hljs-class">  <span class="hljs-title">return</span> &#123;</span><br><span class="hljs-class">    <span class="hljs-title">publicPath</span>: <span class="hljs-title">process</span>.<span class="hljs-title">env</span>.<span class="hljs-type">BASE_URL</span></span><br><span class="hljs-class">  &#125;</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>  然后：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img :<span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;`<span class="hljs-variable">$&#123;publicPath&#125;</span>my-image.png`&quot;</span>&gt;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="何时使用-public-文件夹"><a href="#何时使用-public-文件夹" class="headerlink" title="何时使用 public 文件夹 #"></a>何时使用 <code>public</code> 文件夹 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8-public-%E6%96%87%E4%BB%B6%E5%A4%B9">#</a></h3><ul>
+<li>  你需要在构建输出中指定一个文件的名字。</li>
+<li>  你有上千个图片，需要动态引用它们的路径。</li>
+<li>  有些库可能和 webpack 不兼容，这时你除了将其用一个独立的 <code>&lt;script&gt;</code> 标签引入没有别的选择。</li>
+</ul>
+<h2 id="7-4-Vue项目首页-首页轮播图"><a href="#7-4-Vue项目首页-首页轮播图" class="headerlink" title="7-4 Vue项目首页 - 首页轮播图"></a>7-4 Vue项目首页 - 首页轮播图</h2><h3 id="新建-index-swiper-分支"><a href="#新建-index-swiper-分支" class="headerlink" title="新建 index-swiper 分支"></a>新建 index-swiper 分支</h3><ul>
+<li>线上平台新建 <code>index-swiper</code> 分支</li>
+<li>本地 <code>git pull</code> 拉取远程分支</li>
+<li>本地 <code>git checkout index-swiper</code> 切换本地分支到 <code>index-swiper</code> 分支进行开发</li>
+</ul>
+<h3 id="轮播插件-vue-awesome-swiper"><a href="#轮播插件-vue-awesome-swiper" class="headerlink" title="轮播插件 vue-awesome-swiper"></a>轮播插件 <code>vue-awesome-swiper</code></h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/surmon-china/vue-awesome-swiper">vue-awesome-swiper 插件介绍</a></p>
+</blockquote>
+<h4 id="安装-vue-awesome-swiper"><a href="#安装-vue-awesome-swiper" class="headerlink" title="安装  vue-awesome-swiper"></a>安装  <code>vue-awesome-swiper</code></h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span>vue-awesome-<span class="hljs-keyword">swiper </span>--save<br></code></pre></td></tr></table></figure>
+
+<p>由于视频讲解版本问题，暂时采用下载 <code>2.6.7</code> 版本</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">npm</span> install vue-awesome-swiper@<span class="hljs-number">2</span>.<span class="hljs-number">6</span>.<span class="hljs-number">7</span> --save<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="使用方法-main-js-进行配置"><a href="#使用方法-main-js-进行配置" class="headerlink" title="使用方法 main.js 进行配置"></a>使用方法 <code>main.js</code> 进行配置</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// - 引入 vue-awesome-swiper</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueAwesomeSwiper</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-awesome-swiper&#x27;</span><br><span class="hljs-comment">// - 引入 vue-awesome-swipercss文件</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;swiper/dist/css/swiper.css&#x27;</span><br><br><span class="hljs-comment">// 使用vue-awesome-swiper</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueAwesomeSwiper</span>)<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="swiper-vue-组件开发使用-vue-awesome-swiper"><a href="#swiper-vue-组件开发使用-vue-awesome-swiper" class="headerlink" title="swiper.vue 组件开发使用 vue-awesome-swiper"></a><code>swiper.vue</code> 组件开发使用 <code>vue-awesome-swiper</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 头部组件 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-pagination&quot;</span>  <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,</span><br><span class="language-javascript">  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">swiperOption</span>: &#123;&#125;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.swiper-img</span></span><br><span class="language-css">  <span class="hljs-attribute">width</span> <span class="hljs-number">100%</span></span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="加载抖动问题"><a href="#加载抖动问题" class="headerlink" title="加载抖动问题"></a>加载抖动问题</h4><blockquote>
+<p>轮播图片没加载成功的时候会不显示轮博区域，高度为0，当加载成功的时候会把下面部分挤下去，出现一个抖动的情况</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230109165505.gif" srcset="/img/loading.gif" lazyload alt="加载抖动问题"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrapper&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/p0/1501/f4/f467729126949c3a.water.jpg_640x276_267de9bb.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/p0/1602/92/920e47352552c1c990.water.jpg_640x276_078119ce.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-pagination&quot;</span>  <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,</span><br><span class="language-javascript">  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">swiperOption</span>: &#123;&#125;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.wrapper</span></span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span></span><br><span class="language-css">  height: <span class="hljs-number">0</span></span><br><span class="language-css">  overflow: hidden</span><br><span class="language-css">  // 宽高比 <span class="hljs-number">276</span>/<span class="hljs-number">640</span> = <span class="hljs-number">43.12</span></span><br><span class="language-css">  padding-bottom: <span class="hljs-number">43.12%</span></span><br><span class="language-css">  background-color: <span class="hljs-number">#eee</span></span><br><span class="language-css">.swiper-img</span><br><span class="language-css">    width <span class="hljs-number">100%</span></span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>或者使用 <code>vw</code> <strong>存在兼容问题</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrapper&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-pagination&quot;</span>  <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,</span><br><span class="language-javascript">  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">swiperOption</span>: &#123;&#125;</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.wrapper</span></span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span></span><br><span class="language-css">  // 宽高比 <span class="hljs-number">276</span>/<span class="hljs-number">640</span> = <span class="hljs-number">43.12</span></span><br><span class="language-css">  height: <span class="hljs-number">43.12vw</span></span><br><span class="language-css">  .swiper-img</span><br><span class="language-css">    width <span class="hljs-number">100%</span></span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="pagination设置及颜色修改"><a href="#pagination设置及颜色修改" class="headerlink" title="pagination设置及颜色修改"></a><code>pagination</code>设置及颜色修改</h4><blockquote>
+<p><code>pagination</code> 设置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,<br>  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">swiperOption</span>: &#123;<br>        <span class="hljs-comment">// 设置pagination，选择器选择dom节点class</span><br>        <span class="hljs-attr">pagination</span>: <span class="hljs-string">&#x27;.swiper-pagination&#x27;</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>pagination</code> 选中颜色设置</p>
+</blockquote>
+<p><strong>直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span><br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span><br>  height: <span class="hljs-number">0</span><br>  overflow: hidden<br>  // 宽高比 <span class="hljs-number">276</span>/<span class="hljs-number">640</span> = <span class="hljs-number">43.12</span><br>  padding-bottom: <span class="hljs-number">43.12%</span><br>  background-color: <span class="hljs-number">#eee</span><br>  <span class="hljs-comment">/* 直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式*/</span><br>  .swiper-pagination-bullet-active<br>    background-color: red <span class="hljs-meta">!important</span><br>.swiper-img<br>    width <span class="hljs-number">100%</span><br></code></pre></td></tr></table></figure>
+
+
+<p>通过 <code>.wrapper &gt;&gt;&gt; .swiper-pagination-bullet-active</code> 样式穿透来设置</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css">// 样式穿透<br><span class="hljs-selector-class">.wrapper</span> &gt;&gt;&gt; <span class="hljs-selector-class">.swiper-pagination-bullet-active</span><br>    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fff</span><br>.wrapper<br>  width: <span class="hljs-number">100%</span><br>  height: <span class="hljs-number">0</span><br>  overflow: hidden<br>  // 宽高比 <span class="hljs-number">276</span>/<span class="hljs-number">640</span> = <span class="hljs-number">43.12</span><br>  padding-bottom: <span class="hljs-number">43.12%</span><br>  background-color: <span class="hljs-number">#eee</span><br>  .swiper-pagination-bullet-active<br>    background-color: red <span class="hljs-meta">!important</span><br>.swiper-img<br>    width <span class="hljs-number">100%</span><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="回顾总结"><a href="#回顾总结" class="headerlink" title="回顾总结"></a>回顾总结</h3><ul>
+<li><code>vue-awesome-swipercss</code> 轮播插件使用<ul>
+<li><code>pagination</code> 设置</li>
+<li><code>pagination</code> 颜色修改 (样式穿透)</li>
+<li>轮播数据放在 <code>data</code> 进行循环展示</li>
+<li>轮播图加载空白抖动问题</li>
+<li>轮播图变形问题(计算宽高比)</li>
+</ul>
+</li>
+<li>代码提交<ul>
+<li><ol>
+<li>先关闭服务</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>git add .</code></li>
+</ol>
+</li>
+<li><ol start="3">
+<li><code>git commit -m &quot;代码内容注释&quot;</code></li>
+</ol>
+</li>
+<li><ol start="4">
+<li><code>git push</code></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>分支合并(<code>main</code>(<code>master</code>)) / <code>git</code> 目前新建项目默认分支不是 <code>master</code>，而是 <code>main</code>，其实意义一样<ul>
+<li><ol>
+<li><code>git checkout main</code> - 先切换到主分支</li>
+</ol>
+</li>
+<li><ol start="2">
+<li><code>git merge origin/index-swiper</code> - 新增的内容合并到本地的 <code>main</code>(<code>master</code>) 分支</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>git push 把本地 <code>main</code>(<code>master</code>) 分支内容提交到线上</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<!-- `main`(`master`) 分支放置的是所有功能最新的代码，index-swiper 分支上防止的是开发的具体功能，开发完成时的代码，一般工作的开发流程是先自己开发一个分支，然后测试没有问题的时候，上线的时候会把开发的分支代码合并到`main`(`master`) 主分支上 -->
+
+
+<p><wangyongjie class="wang-success"><code>main</code>(<code>master</code>) 分支放置的是所有功能最新的代码，<code>index-swiper</code> 分支上放置的是开发的具体功能的代码，一般工作的开发流程是先自己开发一个分支，然后测试没有问题的时候，上线的时候会把开发的分支代码合并到<code>main</code>(<code>master</code>) 主分支上<br> </wangyongjie></p>
+<h2 id="7-5-Vue项目首页-图标区域页面布局"><a href="#7-5-Vue项目首页-图标区域页面布局" class="headerlink" title="7-5 Vue项目首页 - 图标区域页面布局"></a>7-5 Vue项目首页 - 图标区域页面布局</h2><blockquote>
+<p>css 布局设计实现</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230110164946.png" srcset="/img/loading.gif" lazyload alt="Vue项目首页 - 图标区域页面布局"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icons&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img-content&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon1.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-desc&quot;</span>&gt;</span>热门景点<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img-content&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon2.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-desc&quot;</span>&gt;</span>热门景点<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img-content&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon3.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-desc&quot;</span>&gt;</span>热门景点<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img-content&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon4.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-desc&quot;</span>&gt;</span>热门景点<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Icons&#x27;</span></span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~styles/varibles.styl&#x27;</span>;</span><br><span class="language-css"><span class="hljs-selector-class">.icons</span></span><br><span class="language-css">  <span class="hljs-attribute">overflow</span> hidden</span><br><span class="language-css">  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span></span><br><span class="language-css">  padding-bottom: <span class="hljs-number">50%</span></span><br><span class="language-css">  .icon</span><br><span class="language-css">    position: relative</span><br><span class="language-css">    overflow: hidden</span><br><span class="language-css">    float: left</span><br><span class="language-css">    height: <span class="hljs-number">0</span></span><br><span class="language-css">    width: <span class="hljs-number">25%</span></span><br><span class="language-css">    padding-bottom: <span class="hljs-number">25%</span></span><br><span class="language-css">    .icon-img</span><br><span class="language-css">      position: absolute</span><br><span class="language-css">      top: <span class="hljs-number">0</span></span><br><span class="language-css">      left: <span class="hljs-number">0</span></span><br><span class="language-css">      right: <span class="hljs-number">0</span></span><br><span class="language-css">      bottom: .<span class="hljs-number">44rem</span></span><br><span class="language-css">      padding: .<span class="hljs-number">1rem</span></span><br><span class="language-css">      box-sizing: border-box</span><br><span class="language-css">      .icon-img-content</span><br><span class="language-css">        display: block</span><br><span class="language-css">        margin: <span class="hljs-number">0</span> auto</span><br><span class="language-css">        height <span class="hljs-number">100%</span></span><br><span class="language-css">    .icon-desc</span><br><span class="language-css">      position: absolute</span><br><span class="language-css">      left: <span class="hljs-number">0</span></span><br><span class="language-css">      right: <span class="hljs-number">0</span></span><br><span class="language-css">      bottom: <span class="hljs-number">0</span></span><br><span class="language-css">      height: .<span class="hljs-number">44rem</span></span><br><span class="language-css">      line-height: .<span class="hljs-number">44rem</span></span><br><span class="language-css">      text-align: center</span><br><span class="language-css">      color: $darkTextColor</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="7-6-Vue项目首页-图标区域逻辑实现"><a href="#7-6-Vue项目首页-图标区域逻辑实现" class="headerlink" title="7-6 Vue项目首页 - 图标区域逻辑实现"></a>7-6 Vue项目首页 - 图标区域逻辑实现</h2><h3 id="高度处理-上半段滑动-下半段滑动都可以"><a href="#高度处理-上半段滑动-下半段滑动都可以" class="headerlink" title="高度处理(上半段滑动/下半段滑动都可以)"></a>高度处理(上半段滑动/下半段滑动都可以)</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.icons</span> &gt;&gt;&gt; <span class="hljs-selector-class">.swiper-container</span><br>  <span class="hljs-attribute">overflow</span> hidden<br>  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span><br>  padding-bottom: <span class="hljs-number">50%</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="浏览器插件安装-需要科学上网"><a href="#浏览器插件安装-需要科学上网" class="headerlink" title="浏览器插件安装(需要科学上网)"></a>浏览器插件安装(需要科学上网)</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd">Vue.js devtools</a></p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230111131130.png" srcset="/img/loading.gif" lazyload alt="Vue.js devtools"></p>
+<h3 id="分页判断处理"><a href="#分页判断处理" class="headerlink" title="分页判断处理"></a>分页判断处理</h3><blockquote>
+<p>根据数据项的不同，自动化的构建页码，实现多页切换的效果</p>
+</blockquote>
+<p><strong>逻辑部分</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">computed</span>: &#123;<br>  pages () &#123;<br>    <span class="hljs-keyword">const</span> pages = []<br>    <span class="hljs-comment">// 对data里的每一项数据进行循环 (每一项内容, 每一项下标)</span><br>    <span class="hljs-comment">// this.iconList.forEach((item, index) =&gt; &#123;</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">iconList</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">item, index</span>) &#123;<br>      <span class="hljs-comment">// 当前下标数据应该展示在轮博的第几页，页面计算</span><br>      <span class="hljs-comment">// 比如第 3 项数据，下标是2，2/8 向下取整是 0 页</span><br>      <span class="hljs-comment">// 比如第 9 项数据，下标是8，8/8 向下取整是 1 页</span><br>      <span class="hljs-keyword">const</span> page = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(index / <span class="hljs-number">8</span>)<br>      <span class="hljs-comment">// pages 下面的 page 不存在，pages[page] 等于一个空数组</span><br>      <span class="hljs-keyword">if</span> (!pages[page]) &#123;<br>        pages[page] = []<br>      &#125;<br>      pages[page].<span class="hljs-title function_">push</span>(item)<br>    &#125;)<br>    <span class="hljs-keyword">return</span> pages<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="超出文字省略号处理-封装"><a href="#超出文字省略号处理-封装" class="headerlink" title="超出文字省略号处理/封装"></a>超出文字省略号处理/封装</h3><blockquote>
+<p><code>styl</code>  提供的 <code>mixin</code> 封装 <code>css</code> 公用</p>
+</blockquote>
+<ul>
+<li>新建 <code>mixins.styl</code>, 封装方法</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">ellipsis()<br>    <span class="hljs-attribute">overflow</span> hidden<br>    <span class="hljs-attribute">white-space</span>: nowrap<br>    text-overflow: ellipsis<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 <code>mixins.styl</code> 方法</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~styles/mixins.styl&#x27;</span>;</span><br><span class="language-css">  <span class="hljs-selector-class">.icon-desc</span></span><br><span class="language-css">    <span class="hljs-attribute">position</span>: absolute</span><br><span class="language-css">    left: <span class="hljs-number">0</span></span><br><span class="language-css">    right: <span class="hljs-number">0</span></span><br><span class="language-css">    bottom: <span class="hljs-number">0</span></span><br><span class="language-css">    height: .<span class="hljs-number">44rem</span></span><br><span class="language-css">    line-height: .<span class="hljs-number">44rem</span></span><br><span class="language-css">    text-align: center</span><br><span class="language-css">    color: $darkTextColor</span><br><span class="language-css">    // 封装方法使用</span><br><span class="language-css">    <span class="hljs-built_in">ellipsis</span>()</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h3><ul>
+<li><code>git checkout main</code>  - 切换到主分支</li>
+<li><code>git merge origin/index-icons</code> - <code>main</code> 分支与线上的 <code>index-icons</code> 分支进行合并</li>
+<li><code>git push</code> - 提交</li>
+</ul>
+<h2 id="7-7-Vue项目首页-热销推荐组件开发"><a href="#7-7-Vue项目首页-热销推荐组件开发" class="headerlink" title="7-7 Vue项目首页 - 热销推荐组件开发"></a>7-7 Vue项目首页 - 热销推荐组件开发</h2><p><img src="https://gitcdn.xiaodongxier.com/image/20230112144755.png" srcset="/img/loading.gif" lazyload alt="热销推荐区块"></p>
+<h4 id="新建-Recommend-组件"><a href="#新建-Recommend-组件" class="headerlink" title="新建 Recommend 组件"></a>新建 <code>Recommend</code> 组件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>热销推荐<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item border-bottom&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of recommendList&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-img&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-info&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-title&quot;</span>&gt;</span>&#123;&#123;item.title&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-desc&quot;</span>&gt;</span>&#123;&#123;item.desc&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-buttom&quot;</span>&gt;</span>查看详情<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeRecommend&#x27;</span>,</span><br><span class="language-javascript">  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">recommendList</span>: [</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;0001&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;故宫博物院&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;世界五大宫之首，穿越与您近在咫尺&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0002&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/p0/2005/39/3979f1867defec4ea3.water.jpg_200x200_325a015d.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;八达岭长城&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;不到长城非好汉&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0003&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://qimgs.qunarzz.com/piao_qsight_provider_piao_qsight_web/0100j1200087e9wb39FE1.jpg_200x200_e3180970.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;颐和园&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;中国现存最大的皇家园林&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0004&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/p0/1507/cc/19733fc0135062788140cbb48ae606a7.water.jpg_200x200_d9ebe2fd.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;北京野生动物园&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;敢与森林之王近距离接触吗？&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0005&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/p0/1505/f5/f5f45e1a83537bcb.water.jpg_200x200_444cc7e8.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;圆明园&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;百年皇家的珍宝,民族耻辱的见证&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0006&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/p0/201405/12/51b63883c25f5d87af3c08bb016e2bd7.jpg_200x200_8eb33f07.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;恭王府&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;一座恭王府，半部清代史&#x27;</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">      ]</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~styles/mixins.styl&#x27;</span></span><br><span class="language-css">.title</span><br><span class="language-css">  <span class="hljs-attribute">margin-top</span>: .<span class="hljs-number">2rem</span></span><br><span class="language-css">  <span class="hljs-attribute">background</span>: #eee</span><br><span class="language-css">  <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">8rem</span></span><br><span class="language-css">  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span></span><br><span class="language-css">.item</span><br><span class="language-css">  overflow hidden</span><br><span class="language-css">  <span class="hljs-attribute">display</span>: flex</span><br><span class="language-css">  <span class="hljs-attribute">height</span>: <span class="hljs-number">1.9rem</span></span><br><span class="language-css">  .item-img</span><br><span class="language-css">    <span class="hljs-attribute">width</span> <span class="hljs-number">1.7rem</span></span><br><span class="language-css">    <span class="hljs-attribute">height</span> <span class="hljs-number">1.7rem</span></span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">1rem</span></span><br><span class="language-css">  .item-info</span><br><span class="language-css">    <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span></span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">1rem</span></span><br><span class="language-css">    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">0</span></span><br><span class="language-css">    .item-title</span><br><span class="language-css">      <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">54rem</span></span><br><span class="language-css">      <span class="hljs-attribute">font-size</span>: .<span class="hljs-number">32rem</span></span><br><span class="language-css">      ellipsis()</span><br><span class="language-css">    .item-desc</span><br><span class="language-css">      <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">4rem</span></span><br><span class="language-css">      <span class="hljs-attribute">color</span>: #ccc</span><br><span class="language-css">      ellipsis()</span><br><span class="language-css">    .item-buttom</span><br><span class="language-css">      <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">44rem</span></span><br><span class="language-css">      <span class="hljs-attribute">margin-top</span>: .<span class="hljs-number">16rem</span></span><br><span class="language-css">      <span class="hljs-attribute">background</span>: #ff9300</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> .<span class="hljs-number">2rem</span></span><br><span class="language-css">      <span class="hljs-attribute">border-radius</span>: .<span class="hljs-number">06rem</span></span><br><span class="language-css">      <span class="hljs-attribute">color</span> #fff</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="1像素边框问题解决"><a href="#1像素边框问题解决" class="headerlink" title="1像素边框问题解决"></a>1像素边框问题解决</h4><blockquote>
+<p>直接给元素添加 <code>class</code> 为 <code>border-bottom</code>  即可</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>热销推荐<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item border-bottom&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of recommendList&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-img&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-info&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-title&quot;</span>&gt;</span>&#123;&#123;item.title&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-desc&quot;</span>&gt;</span>&#123;&#123;item.desc&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-buttom&quot;</span>&gt;</span>查看详情<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="文字溢出省略号显示问题-小技巧解决"><a href="#文字溢出省略号显示问题-小技巧解决" class="headerlink" title="文字溢出省略号显示问题/小技巧解决"></a>文字溢出省略号显示问题/小技巧解决</h4><blockquote>
+<p>使用 <code>ellipsis()</code>，然后父级元素给设置一个宽度  <code>min-width: 0</code></p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-info</span><br>  <span class="hljs-attribute">min-width</span>: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="7-8-Vue项目首页-开发周末游组件"><a href="#7-8-Vue项目首页-开发周末游组件" class="headerlink" title="7-8 Vue项目首页 - 开发周末游组件"></a>7-8 Vue项目首页 - 开发周末游组件</h2><p><img src="https://gitcdn.xiaodongxier.com/image/20230112145059.png" srcset="/img/loading.gif" lazyload alt="热销推荐区块"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>周末去哪儿<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item border-bottom&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of recommendList&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-img-wraper&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-img&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-info&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-title&quot;</span>&gt;</span>&#123;&#123;item.title&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item-desc&quot;</span>&gt;</span>&#123;&#123;item.desc&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeRecommend&#x27;</span>,</span><br><span class="language-javascript">  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">recommendList</span>: [</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;0001&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;京城有好泉&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;细数北京温泉，温暖你的冬天&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0002&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;京城周末撒欢&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;在帝都过周末，不仅仅是城中游！&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0003&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/source/1811/7e/476589267ebb41.jpg_r_640x214_bf599709.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;京城溜娃必去&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;德智体美劳全面发展的亲子日，这些地方该去看看…&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0004&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/source/1505/aa/7baaf8a851d221.jpg_r_640x214_1431200f.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;北京野生动物园&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;敢与森林之王近距离接触吗？&#x27;</span></span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">        &#123;</span><br><span class="language-javascript">          <span class="hljs-attr">ia</span>: <span class="hljs-string">&#x27;0005&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">imgUrl</span>: <span class="hljs-string">&#x27;https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;寻找北京的皇城范儿&#x27;</span>,</span><br><span class="language-javascript">          <span class="hljs-attr">desc</span>: <span class="hljs-string">&#x27;数百年的宫廷庙宇，至今依旧威严霸气&#x27;</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">      ]</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;stylus&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@import</span> <span class="hljs-string">&#x27;~styles/mixins.styl&#x27;</span></span><br><span class="language-css">.title</span><br><span class="language-css">  <span class="hljs-attribute">margin-top</span>: .<span class="hljs-number">2rem</span></span><br><span class="language-css">  <span class="hljs-attribute">background</span>: #eee</span><br><span class="language-css">  <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">8rem</span></span><br><span class="language-css">  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span></span><br><span class="language-css">.item-img-wraper</span><br><span class="language-css">  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span></span><br><span class="language-css">  <span class="hljs-attribute">overflow</span>: hidden</span><br><span class="language-css">  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">33.9%</span></span><br><span class="language-css">.item-img</span><br><span class="language-css">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span></span><br><span class="language-css">.item-info</span><br><span class="language-css">  <span class="hljs-attribute">padding</span>: .<span class="hljs-number">1rem</span></span><br><span class="language-css">  .item-title</span><br><span class="language-css">    <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">54rem</span></span><br><span class="language-css">    <span class="hljs-attribute">font-size</span>: .<span class="hljs-number">32rem</span></span><br><span class="language-css">    ellipsis()</span><br><span class="language-css">  .item-desc</span><br><span class="language-css">    <span class="hljs-attribute">line-height</span>: .<span class="hljs-number">4rem</span></span><br><span class="language-css">    <span class="hljs-attribute">color</span>: #ccc</span><br><span class="language-css">    ellipsis()</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>HOME 组件拆分</strong><ul>
+<li><code>header</code> 组件</li>
+<li><code>swiper</code> 组件</li>
+<li><code>icons</code> 组件</li>
+<li><code>recommend</code> 组件</li>
+<li><code>weekend</code> 组件</li>
+</ul>
+</li>
+</ul>
+<h2 id="slot-的使用"><a href="#slot-的使用" class="headerlink" title="slot 的使用"></a>slot 的使用</h2><p>组件内传入了很多内容，都是通过 <code>slot</code> 的方式把页面的数据传递给 <code>swiper</code></p>
+<p><wangyongjie class="wang-success">课下阅读官方文档 <a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#slot">slot</a> 章节内容 </wangyongjie></p>
+<h2 id="7-9-Vue项目首页-使用-axios-发送-ajax-请求"><a href="#7-9-Vue项目首页-使用-axios-发送-ajax-请求" class="headerlink" title="7-9 Vue项目首页 - 使用 axios 发送 ajax 请求"></a>7-9 Vue项目首页 - 使用 axios 发送 ajax 请求</h2><blockquote>
+<p>axios 数据请求，可是实现跨平台数据请求</p>
+</blockquote>
+<p>之前的方法有 </p>
+<ul>
+<li><code>fetch</code> - 浏览器自带的函数</li>
+<li><code>vue-resource</code> - 第三方的模块</li>
+</ul>
+<h3 id="新建-index-ajax-分支"><a href="#新建-index-ajax-分支" class="headerlink" title="新建 index-ajax 分支"></a>新建 index-ajax 分支</h3><p>上章内容忘记合并主分支，而 <code>index-ajax</code> 分支是从主分支复制过来的，所以本分支缺少上节 <code>index-commend</code> 分支内容，处理办法，通过下面命令</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">git <span class="hljs-built_in">merge</span> <span class="hljs-built_in">index</span>-commend<br></code></pre></td></tr></table></figure>
+
+<p>把 <code>index-commend</code> 分支内容，融合到 <code>index-ajax</code> 分支</p>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230117104324.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<h3 id="安装-axios"><a href="#安装-axios" class="headerlink" title="安装 axios"></a>安装 axios</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install axios <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="使用-axios"><a href="#使用-axios" class="headerlink" title="使用 axios"></a>使用 axios</h3><p>子组件使用 <code>axios</code> 获取数据的话需要至少发起5次 <code>ajax</code> 请求，会导致性能不好，所以把 <code>ajax</code> 请求放在 <code>Home.vue</code> 中的 <code>mounted</code> 生命周期函数中即可</p>
+<p><code>Home.vue</code> 组件发起 <code>ajax</code> 请求，然后通过组件传递把数据传递给每个子组件</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>数据获取</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">getHomeInfo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/static/mock/index.json&#x27;</span>)<br>      .<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">getHomeInfoSucc</span>)<br>  &#125;,<br>  <span class="hljs-attr">getHomeInfoSucc</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)<br>  &#125;<br>&#125;,<br><span class="hljs-attr">mounted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getHomeInfo</span>()<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="数据模拟"><a href="#数据模拟" class="headerlink" title="数据模拟"></a>数据模拟</h4><p><code>static</code> 目录存放静态文件，创建 <code>mock</code> 文件夹放置模拟数据文件</p>
+<ul>
+<li>问：为什么放置在 <code>static</code> 目录下？ </li>
+<li>答：只有 <code>static</code> 目录下的文件才能被外部访问，其他目录下的文件会被重定向到首页</li>
+</ul>
+<h4 id="模拟数据屏蔽提交到线上"><a href="#模拟数据屏蔽提交到线上" class="headerlink" title="模拟数据屏蔽提交到线上"></a>模拟数据屏蔽提交到线上</h4><blockquote>
+<p><code>.gitignore</code> 内添加 <code>static/mock</code>，以防止提交到线上</p>
+</blockquote>
+<p>也不会提交到本地的仓库</p>
+<h4 id="转发机制，代理"><a href="#转发机制，代理" class="headerlink" title="转发机制，代理"></a>转发机制，代理</h4><blockquote>
+<p>不是 <code>vue</code> 提供的，是 <code>webpak-dev-server</code> 提供的</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">getHomeInfo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/static/mock/index.json&#x27;</span>)<br>      .<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">getHomeInfoSucc</span>)<br>  &#125;,<br>  <span class="hljs-attr">getHomeInfoSucc</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)<br>  &#125;<br>&#125;,<br><span class="hljs-attr">mounted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getHomeInfo</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>正式开发环境请求路径应该如下这样，<code>axios.get(&#39;/api/index.json&#39;)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">getHomeInfo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/index.json&#x27;</span>)<br>      .<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">getHomeInfoSucc</span>)<br>  &#125;,<br>  <span class="hljs-attr">getHomeInfoSucc</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)<br>  &#125;<br>&#125;,<br><span class="hljs-attr">mounted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getHomeInfo</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>config</code> 目录下 <code>index.js</code> 文件</p>
+<p><code>proxyTable</code> 配置项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">proxyTable</span>: &#123;<br>  <span class="hljs-comment">// 当请求api目录的时候</span><br>  <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>    <span class="hljs-comment">// 把请求转发到服务器8080端口上</span><br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://localhost:8080&#x27;</span>,<br>    <span class="hljs-comment">// 路径进行一个替换</span><br>    <span class="hljs-attr">pathRewrite</span>: &#123;<br>      <span class="hljs-comment">// 一旦请求的地址是以api开头的,就请求到本地的 static 目录下 mock 文件夹下</span><br>      <span class="hljs-string">&#x27;^/api&#x27;</span>: <span class="hljs-string">&#x27;/static/mock/&#x27;</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>是 <code>webpak-dev-server</code> 提供的</p>
+<p>当改完配置项文件的时候，需要重启下服务器</p>
+<h4 id="模拟数据使用"><a href="#模拟数据使用" class="headerlink" title="模拟数据使用"></a>模拟数据使用</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// 服务器正确相应的请求</span><br><span class="hljs-attr">&quot;ret&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br><span class="hljs-comment">// 服务器返回的所有数据</span><br><span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意项：</p>
+<ul>
+<li><code>json</code> 数据结束后面会多写一个逗号，导致解析失败</li>
+</ul>
+<h4 id="遗留问题解决"><a href="#遗留问题解决" class="headerlink" title="遗留问题解决"></a>遗留问题解决</h4><p>周末去哪儿模块上面多一个白色区块</p>
+<p><code>Weekend.vue</code> 中 <code>title</code> 去掉 <code>margin-top: .2rem</code></p>
+<h2 id="7-10-Vue项目首页-首页父子组组件间传值"><a href="#7-10-Vue项目首页-首页父子组组件间传值" class="headerlink" title="7-10 Vue项目首页 - 首页父子组组件间传值"></a>7-10 Vue项目首页 - 首页父子组组件间传值</h2><p>父组件向子组件传值： 通过属性的形式传递<br>子组件通过props的方式接受传递的值 </p>
+<h3 id="header-部分"><a href="#header-部分" class="headerlink" title="header 部分"></a>header 部分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeHeader&#x27;</span>,<br>  <span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;city&#x27;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者定义传递值的类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeHeader&#x27;</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">city</span>: <span class="hljs-title class_">String</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="swiper-部分"><a href="#swiper-部分" class="headerlink" title="swiper 部分"></a>swiper 部分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-comment">// 数据接收</span><br>    <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span><br>  &#125;,<br>  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">swiperOption</span>: &#123;<br>        <span class="hljs-comment">// 设置pagination，选择器选择dom节点class</span><br>        <span class="hljs-attr">pagination</span>: <span class="hljs-string">&#x27;.swiper-pagination&#x27;</span>,<br>        <span class="hljs-comment">// 设置轮播循环展示</span><br>        <span class="hljs-attr">loop</span>: <span class="hljs-literal">false</span><br>      &#125;<br>      <span class="hljs-comment">// swiperList: [</span><br>      <span class="hljs-comment">//   &#123;</span><br>      <span class="hljs-comment">//     id: &#x27;0001&#x27;,</span><br>      <span class="hljs-comment">//     imgUrl: &#x27;https://imgs.qunarzz.com/sight/p0/1501/f4/f467729126949c3a.water.jpg_640x276_267de9bb.jpg&#x27;</span><br>      <span class="hljs-comment">//   &#125;,</span><br>      <span class="hljs-comment">//   &#123;</span><br>      <span class="hljs-comment">//     id: &#x27;0002&#x27;,</span><br>      <span class="hljs-comment">//     imgUrl: &#x27;https://imgs.qunarzz.com/sight/p0/1602/92/920e47352552c1c990.water.jpg_640x276_078119ce.jpg&#x27;</span><br>      <span class="hljs-comment">//   &#125;</span><br>      <span class="hljs-comment">// ]</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>打开直接显示最后一帧问题？</p>
+<p>当页面还没获取到ajax数据的时候swiper已经执行了，接收到的是空数组，<br>刚开始swiper创建的时候是空数组创建的，后来ajax接收到数据后，重新渲染了就出现了现实最后一个图片的问题</p>
+<p>所以创建swiper应该等完整数据获取完成后在来创建，通过v-if来判断解决这个问题，v-if这个值用list.length 来判断，当数据获取为空的时候v-if为false，对应的swiper也不会被创建，当获取完数据后对应的值为ture，对应的swiper会被创建，就解决了上面存在的问题</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrapper&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">      v-if=&quot;list.length&quot; 判断数据是否获取完成</span><br><span class="hljs-comment">     --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;list.length&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of list&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-pagination&quot;</span>  <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>模版里面尽量避免出现逻辑性的代码(例如上面)</p>
+<p>最优方案如下：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrapper&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- showSwipeer --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;showSwipeer&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of list&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-img&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;swiper-pagination&quot;</span>  <span class="hljs-attr">slot</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeSwiper&#x27;</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span><br>  &#125;,<br>  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">swiperOption</span>: &#123;<br>        <span class="hljs-attr">pagination</span>: <span class="hljs-string">&#x27;.swiper-pagination&#x27;</span>,<br>        <span class="hljs-attr">loop</span>: <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-comment">// 计算属性，数据长度</span><br>  <span class="hljs-attr">computed</span>: &#123;<br>    <span class="hljs-attr">showSwipeer</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">list</span>.<span class="hljs-property">length</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>自动轮博问题解决</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icons&quot;</span>&gt;</span><br>      <span class="hljs-comment">&lt;!-- 添加 :options=&quot;swiperOption&quot; 属性 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;swiperOption&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">swiper-slide</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(page, index) of pages&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span>  <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of page&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-img-content&quot;</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;item.imgUrl&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon-desc&quot;</span>&gt;</span>&#123;&#123;item.desc&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-slide</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;homeIcons&#x27;</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span><br>  &#125;,<br>  <span class="hljs-attr">data</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-comment">// 设置轮播自动轮博问题</span><br>      <span class="hljs-attr">swiperOption</span>: &#123;<br>        <span class="hljs-attr">autoplay</span>: <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Recommend-部分"><a href="#Recommend-部分" class="headerlink" title="Recommend 部分"></a>Recommend 部分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeRecommend&#x27;</span>,<br>  <span class="hljs-comment">// 通过 props 获取父级传递的数据</span><br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Weekend-部分"><a href="#Weekend-部分" class="headerlink" title="Weekend 部分"></a>Weekend 部分</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HomeRecommend&#x27;</span>,<br>  <span class="hljs-comment">// 通过 props 获取父级传递的数据</span><br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">list</span>: <span class="hljs-title class_">Array</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">前端开发</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Vue2-5-2-6-3-0%E5%BC%80%E5%8F%91%E5%8E%BB%E5%93%AA%E5%84%BF%E7%BD%91App/" class="category-chain-item">Vue2.5-2.6-3.0开发去哪儿网App</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>第7章 项目实战 - 旅游网站首页开发</div>
+      <div>http://xiaodongxier.github.io/pages/4116c8c9.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月2日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月20日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/6c9ba40e.html" title="科技爱好者周刊（第 226 期）：谷歌出了什么问题？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊（第 226 期）：谷歌出了什么问题？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/f091aeb0.html" title="科技爱好者周刊（第 225 期）：NPC 演员也是一种职业">
+                        <span class="hidden-mobile">科技爱好者周刊（第 225 期）：NPC 演员也是一种职业</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '72b82db2fe7c8c31c66ba29fedb92b4f'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>

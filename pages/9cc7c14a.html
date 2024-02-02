@@ -1,0 +1,1163 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本章首先讲解项目环境的基础配置，在此基础上分析工程代码目录结构，延展讲解 Vue中单文件组件及单页面应用路由的概念，最后将带大家整理项目目录，完成 stylus、reset.css 等基础工具及样式的引入，完成项目开发前的准备工作。…  6-1 Vue项目预热 - 环境配置nodejs https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;  LTS - 长期维护版Current - 最新版  版本检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第6章 Vue 项目预热">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/9cc7c14a.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="本章首先讲解项目环境的基础配置，在此基础上分析工程代码目录结构，延展讲解 Vue中单文件组件及单页面应用路由的概念，最后将带大家整理项目目录，完成 stylus、reset.css 等基础工具及样式的引入，完成项目开发前的准备工作。…  6-1 Vue项目预热 - 环境配置nodejs https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;  LTS - 长期维护版Current - 最新版  版本检测">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitcdn.xiaodongxier.com/image/20230216143901.jpg">
+<meta property="article:published_time" content="2022-09-04T06:28:57.000Z">
+<meta property="article:modified_time" content="2023-02-16T06:39:08.282Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitcdn.xiaodongxier.com/image/20230216143901.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>第6章 Vue 项目预热 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="第6章 Vue 项目预热"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-04 14:28" pubdate>
+          2022年9月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          99 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">第6章 Vue 项目预热</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>本章首先讲解项目环境的基础配置，在此基础上分析工程代码目录结构，延展讲解 Vue中单文件组件及单页面应用路由的概念，最后将带大家整理项目目录，完成 stylus、reset.css 等基础工具及样式的引入，完成项目开发前的准备工作。…</p>
+</blockquote>
+<h2 id="6-1-Vue项目预热-环境配置"><a href="#6-1-Vue项目预热-环境配置" class="headerlink" title="6-1 Vue项目预热 - 环境配置"></a>6-1 Vue项目预热 - 环境配置</h2><h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+</blockquote>
+<p>LTS - 长期维护版<br>Current - 最新版</p>
+<blockquote>
+<p>版本检测 node -v</p>
+</blockquote>
+<h3 id="创建vue项目"><a href="#创建vue项目" class="headerlink" title="创建vue项目"></a>创建vue项目</h3><blockquote>
+<p>全局安装 vue-cli<br><code>$ npm install -g vue-cli</code></p>
+</blockquote>
+<blockquote>
+<p>创建项目<br><code>$ vue init &lt;template-name&gt; &lt;project-name&gt;</code><br><code>$ vue init webpack mkw-vue-qnew-develop</code></p>
+</blockquote>
+<blockquote>
+<p>项目初始化<br><code>$ vue init webpack my-project</code></p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230104150210.jpg" srcset="/img/loading.gif" lazyload alt="项目初始化"></p>
+<ul>
+<li><code>Target directory exists. Continue?</code> - 文件夹已经存在是否往文件夹里添加</li>
+<li><code>Project name</code> - 项目名称，不填自动以文件夹名字命名<ul>
+<li><code>Sorry name can no longer contain capital letters.</code> - 抱歉，名称不能再包含大写字母。</li>
+</ul>
+</li>
+<li><code>Proiect description</code> - 项目描述</li>
+<li><code>Author</code> - 作者</li>
+<li><code>Vue build</code> - 编译形式<ul>
+<li><code>Runtime Compiler: recommended for most users</code> - 运行时编译 ✅</li>
+<li><code>Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML are ONLY allowed in .vue files render functions are required elsewhere</code> - 运行时和其他时间编译</li>
+</ul>
+</li>
+<li><code>Install vue-router?</code>  - 是否安装 <code>vue-router</code> 路由 ✅</li>
+<li><code>Use ESLint to lint your code?</code> - 是否使用 <code>ESLint</code> 对代码的公正度进行检查</li>
+<li><code>Pick an ESLint preset</code> - 代码检测规范<ul>
+<li><code>Standard (https://github.com/standard/standard)</code> ✅</li>
+<li><code>Airbnb (https://github.com/airbnb/javascript)</code></li>
+<li><code>none (configure it yourself)</code></li>
+</ul>
+</li>
+<li><code>Set up unit tests</code> - 自动化测试相关</li>
+<li><code>Setup e2e tests with Nightwatch?</code> e2e端到端测试</li>
+<li><code>Should we run npm install for you after the project has been created? (recommended)(Use arrow keys)</code> - 项目包管理工具<ul>
+<li><code>Yes, use NPM</code> ✅</li>
+<li><code>Yes, use Yarn</code></li>
+<li><code>No. I will handle that myself</code></li>
+</ul>
+</li>
+</ul>
+<p><wangyongjie class="wang-success">课下阅读官方文档 <a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/guide/installation.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-CLI">命令行工具 (CLI)</a> 章节内容 </wangyongjie></p>
+<p>Vue 提供了一个<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli">官方的 CLI</a>，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/">Vue CLI 的文档</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git status<br>git add .<br>git commit -m <span class="hljs-string">&quot;变更内容注释&quot;</span><br>git push<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="课外补充，md代码块支持的高亮标识"><a href="#课外补充，md代码块支持的高亮标识" class="headerlink" title="课外补充，md代码块支持的高亮标识"></a>课外补充，md代码块支持的高亮标识</h4><table>
+<thead>
+<tr>
+<th>开发语言</th>
+<th>md中的标识</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bash</td>
+<td>bash</td>
+</tr>
+<tr>
+<td>C++</td>
+<td>cpp</td>
+</tr>
+<tr>
+<td>C#</td>
+<td>cs</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>css</td>
+</tr>
+<tr>
+<td>D</td>
+<td>d</td>
+</tr>
+<tr>
+<td>Dart</td>
+<td>d (dart)</td>
+</tr>
+<tr>
+<td>Delphi</td>
+<td>delphi</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>go</td>
+</tr>
+<tr>
+<td>Gradle</td>
+<td>gradle</td>
+</tr>
+<tr>
+<td>Groovy</td>
+<td>groovy</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>html</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>java</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>javascript</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>json</td>
+</tr>
+<tr>
+<td>Less</td>
+<td>less</td>
+</tr>
+<tr>
+<td>Lisp</td>
+<td>lisp</td>
+</tr>
+<tr>
+<td>Lua</td>
+<td>lua</td>
+</tr>
+<tr>
+<td>Objective C</td>
+<td>objectivec</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>markdown</td>
+</tr>
+<tr>
+<td>Nginx</td>
+<td>nginx</td>
+</tr>
+<tr>
+<td>Perl</td>
+<td>perl</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>php</td>
+</tr>
+<tr>
+<td>PowersShell</td>
+<td>powershell</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>python</td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td>ruby</td>
+</tr>
+<tr>
+<td>SCSS</td>
+<td>scss</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>sql</td>
+</tr>
+<tr>
+<td>Swift</td>
+<td>swift</td>
+</tr>
+<tr>
+<td>text</td>
+<td>text/plain</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>typescript</td>
+</tr>
+<tr>
+<td>Vim Script</td>
+<td>vim</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>xml</td>
+</tr>
+<tr>
+<td>YAML</td>
+<td>yml</td>
+</tr>
+</tbody></table>
+<h2 id="6-2-（新）Vue项目预热-项目环境准备-答疑"><a href="#6-2-（新）Vue项目预热-项目环境准备-答疑" class="headerlink" title="6-2 （新）Vue项目预热 - 项目环境准备(答疑)"></a>6-2 （新）Vue项目预热 - 项目环境准备(答疑)</h2><blockquote>
+<p>慕课网源码：<a target="_blank" rel="noopener" href="https://git.imooc.com/coding-203">https://git.imooc.com/coding-203</a></p>
+</blockquote>
+<blockquote>
+<p> 卸载安装的新的版本 <code>npm uninstall @vue/cli -g</code></p>
+</blockquote>
+<blockquote>
+<p>淘宝镜像 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/NPM">https://developer.aliyun.com/mirror/NPM</a></p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230104154456.jpg" srcset="/img/loading.gif" lazyload alt="安装"></p>
+<h3 id="移除新版-vue-cli"><a href="#移除新版-vue-cli" class="headerlink" title="移除新版 vue-cli"></a>移除新版 <code>vue-cli</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">npm uninstall @vue/cli -g<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装旧版-vue-cli"><a href="#安装旧版-vue-cli" class="headerlink" title="安装旧版 vue-cli"></a>安装旧版 <code>vue-cli</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">npm install vue-cli -g<br></code></pre></td></tr></table></figure>
+
+<p>卸载旧版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">npm uninstall vue-cli -g<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="淘宝-NPM-镜像"><a href="#淘宝-NPM-镜像" class="headerlink" title="淘宝 NPM 镜像"></a>淘宝 NPM 镜像</h3><blockquote>
+<p>淘宝 NPM 镜像: <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/NPM">https://developer.aliyun.com/mirror/NPM</a> （旧）</p>
+</blockquote>
+<blockquote>
+<p>npmmirror 中国镜像站: <a target="_blank" rel="noopener" href="http://www.npmmirror.com/?spm=a2c6h.14029880.0.0.3ba63839KoGSmz%EF%BC%88%E6%96%B0%EF%BC%89">http://www.npmmirror.com/?spm=a2c6h.14029880.0.0.3ba63839KoGSmz（新）</a></p>
+</blockquote>
+<ul>
+<li>你可以使用我们定制的 <a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpm">cnpm</a> (gzip 压缩支持) 命令行工具代替默认的 <code>npm</code>:</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">npm install -g cnpm --registry=https:<span class="hljs-regexp">//</span>registry.npmmirror.com<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>安装模块</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cnpm</span> install<span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="6-3-Vue项目预热-项目代码介绍"><a href="#6-3-Vue项目预热-项目代码介绍" class="headerlink" title="6-3 Vue项目预热 - 项目代码介绍"></a>6-3 Vue项目预热 - 项目代码介绍</h2><blockquote>
+<p>最主要是 <code>src</code> 目录下项目代码的开发</p>
+</blockquote>
+<p><img src="https://gitcdn.xiaodongxier.com/image/20230104171656.png" srcset="/img/loading.gif" lazyload alt="初始化文件结构"></p>
+<ul>
+<li><code>README</code> - 项目的说明文件</li>
+<li><code>package</code> - 第三方模块依赖包</li>
+<li><code>package-lock</code> - <code>package</code> 的一个锁文件，确定安装第三方包的版本，保证团队编程的统一</li>
+<li><code>LICENSE</code> - 开源协议声明</li>
+<li><code>index.html</code> - 默认的项目首页模版文件</li>
+<li><code>.postcssrc.js</code> - <code>post css</code>配置项</li>
+<li><code>.gitignore</code> - <code>git</code> 提交过滤，不想提交到仓库的文件可以进行配置</li>
+<li><code>.eslintrc</code> - 代码规范检测</li>
+<li><code>.eslintignore</code> - 文件不想被 <code>eslintrc</code> 进行检测可以配置到里面，写的不标准也不会进行提示</li>
+<li><code>.editorconfig</code> - 关于编辑器的一些配置，方便统一编程</li>
+<li><code>.babelrc</code> -  语法转换，转换成浏览器可以正常编译执行的代码</li>
+<li><code>static</code> - 静态资源(图片/模拟的数据)<ul>
+<li><code>.gitkeep</code> - </li>
+</ul>
+</li>
+<li><code>src</code> - 整个项目的源代码<ul>
+<li><code>assets</code> - 静态资源(图片类资源)</li>
+<li><code>components</code> - 组件</li>
+<li><code>router/index.js</code> - 路由</li>
+<li><code>App.vue</code> - 最原始的根组建</li>
+<li><code>main.js</code> - 整个项目的入口文件</li>
+</ul>
+</li>
+<li><code>node_modules</code> - 项目依赖的第三方包</li>
+<li><code>config</code> - 项目的配置文件<ul>
+<li><code>dev.env.js</code> - 开发环境配置</li>
+<li><code>index.js.js</code> - 基础的配置信息</li>
+<li><code>prod.env.js</code> - 线上环境配置</li>
+</ul>
+</li>
+<li><code>build</code> - <code>webpack</code> 配置项/<code>vue-cli</code>自动构建的/无需修改<ul>
+<li><code>build.js</code> - 打包过程额外的 <code>webpack</code> 配置？</li>
+<li><code>check-versions.js</code> - </li>
+<li><code>utils.js</code> - </li>
+<li><code>vue-loader.conf.js</code> - </li>
+<li><code>webpack.base.conf.js</code> - 基础的 <code>webpack</code> 配置项</li>
+<li><code>webpack.dev.conf.js</code> - 开发环境的 <code>webpack</code> 配置项</li>
+<li><code>webpack.prod.conf.js</code> - 线上环境的 <code>webpack</code> 配置项</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-4-Vue项目预热-单文件组件与Vue中的路由"><a href="#6-4-Vue项目预热-单文件组件与Vue中的路由" class="headerlink" title="6-4 Vue项目预热 - 单文件组件与Vue中的路由"></a>6-4 Vue项目预热 - 单文件组件与Vue中的路由</h2><blockquote>
+<p>components: { App } </p>
+</blockquote>
+<p>es6的写法，同下面写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">components</span>: &#123; <br>  <span class="hljs-title class_">App</span> : <span class="hljs-title class_">App</span><br>&#125; <br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>import App from ‘./App’</p>
+</blockquote>
+<p>默认去找App.js/App.json/App.vue等文件</p>
+<blockquote>
+<p>以.vue结尾的文件称之为单文件组件</p>
+</blockquote>
+<p>单文件组件基本结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>  &lt;div id=&quot;app&quot;&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>export default &#123;<br>  name: &#x27;App&#x27;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style&gt;<br>#app &#123;<br>  font-family: &#x27;Avenir&#x27;, Helvetica, Arial, sans-serif;<br>  -webkit-font-smoothing: antialiased;<br>  -moz-osx-font-smoothing: grayscale;<br>  text-align: center;<br>  color: #2c3e50;<br>  margin-top: 60px;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><blockquote>
+<p>路由：根据网址的不同，返回不同的内容给用户</p>
+</blockquote>
+<blockquote>
+<p><code>&lt;router-view/&gt;</code>当前路由地址所对应的内容 </p>
+</blockquote>
+<p>路由配置在 <code>./router/index.js</code> 文件</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li><code>style</code> 后面要回车一行</li>
+<li><code>export default</code>中<code>name</code>的值要是单引号</li>
+</ol>
+<h2 id="6-5-Vue项目预热-单页应用VS多页应用"><a href="#6-5-Vue项目预热-单页应用VS多页应用" class="headerlink" title="6-5 Vue项目预热 - 单页应用VS多页应用"></a>6-5 Vue项目预热 - 单页应用VS多页应用</h2><h3 id="多页面应用"><a href="#多页面应用" class="headerlink" title="多页面应用"></a>多页面应用</h3><p><img src="https://gitcdn.xiaodongxier.com/image/20230105141134.png" srcset="/img/loading.gif" lazyload alt="多页面应用"></p>
+<p>页面跳转-&gt;返回 <code>HTML</code></p>
+<p>优点：首屏时间快/<code>SEO</code>效果好<br>缺点：页面切换慢</p>
+<h3 id="单页面应用"><a href="#单页面应用" class="headerlink" title="单页面应用"></a>单页面应用</h3><p><img src="https://gitcdn.xiaodongxier.com/image/20230105141055.png" srcset="/img/loading.gif" lazyload alt="单页面应用"></p>
+<blockquote>
+<p>vue里一般不用<code>a</code>标签做页面跳转</p>
+</blockquote>
+<blockquote>
+<p><code>template</code> 里面像外暴露只能暴露一个跟标签</p>
+</blockquote>
+<blockquote>
+<p>搜索引擎只认识 <code>html</code> 内容不认识 <code>js</code> 内容，所以 <code>seo</code> 差</p>
+</blockquote>
+<p>页面跳转 -&gt; <code>js</code>渲染</p>
+<p>优点：页面切换快<br>缺点：首屏时间稍慢，<code>SEO</code> 差</p>
+<p><strong>后期会学到服务器端渲染等可内容以解决但页面应用目前存在的问题，解决完这些问题，对前端来说 <code>vue</code> 是一个完美的开发应用</strong></p>
+<h2 id="6-6-【讨论题】对前端路由，你有怎样的理解？"><a href="#6-6-【讨论题】对前端路由，你有怎样的理解？" class="headerlink" title="6-6 【讨论题】对前端路由，你有怎样的理解？"></a>6-6 【讨论题】对前端路由，你有怎样的理解？</h2><h6 id="传统页面："><a href="#传统页面：" class="headerlink" title="传统页面："></a>传统页面：</h6><ul>
+<li>  <code>整个项目都是 DOM 直出</code>的页面（简单说就是在浏览器输入网址后发起请求，返回来的 HTML 页面是最终呈现的效果，那就是 DOM 直出。）</li>
+<li>  每次加载页面(每次点击页面跳转)，都会重新请求 HTML 资源,返回 HTML 资源以及里面的 CSS 等静态资源，组合成一个新的页面。</li>
+</ul>
+<h6 id="单页面"><a href="#单页面" class="headerlink" title="单页面"></a>单页面</h6><p>时代在进步，科技在发展，面对日益增长的网页需求，网页开始走向模块化、组件化的道路。随之而来的是代码的难以维护、不可控、迭代艰难等现象。面临这种情况，催生出不少优秀的现代前端框架，首当其冲的便是 React 、 Vue 、 Angular 等著名单页面应用框架。</p>
+<p>运用这些单页面框架之后， <code>HTML 页面基本上只有一个 DOM 入口</code>，所有的页面组件，都是通过<code>运行app.js 脚本</code>，挂载到 <div id="root"></div> 这个节点下面<br>既然单页面是这样渲染的，那如果我有十几个页面要互相跳转切换，咋整！！？？这时候 前端路由 应运而生，它的出现就是为了解决单页面网站，通过切换浏览器地址路径，来匹配相对应的页面组件。</p>
+<h6 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h6><p>前端路由 会根据浏览器地址栏 pathname 的变化，去匹配相应的页面组件。然后将其通过创建 DOM 节点的形式，塞入根节点 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 。这就达到了无刷新页面切换的效果，从侧面也能说明正因为无刷新，所以 React 、 Vue 、 Angular 等现代框架在创建页面组件的时候，每个组件都有自己的 生命周期 。</p>
+<h2 id="6-7-Vue项目预热-项目代码初始化"><a href="#6-7-Vue项目预热-项目代码初始化" class="headerlink" title="6-7 Vue项目预热 - 项目代码初始化"></a>6-7 Vue项目预热 - 项目代码初始化</h2><h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><blockquote>
+<p>viewport 的 meta 标签进行配置,移动端禁止手指缩放 <strong>ios safari浏览器目测不起作用</strong></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><blockquote>
+<p>引入reset.css文件<code>import &#39;./assets/styles/reset.css&#39;</code>，重置css默认样式进行浏览器之间样式的统一 </p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@charset</span> <span class="hljs-string">&quot;utf-8&quot;</span>;<span class="hljs-selector-tag">html</span>&#123;touch-action: manipulation;<span class="hljs-attribute">background-color</span>:<span class="hljs-number">#fff</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#000</span>;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">12px</span>&#125;<br><span class="hljs-selector-tag">body</span>,<span class="hljs-selector-tag">ul</span>,<span class="hljs-selector-tag">ol</span>,<span class="hljs-selector-tag">dl</span>,<span class="hljs-selector-tag">dd</span>,<span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>,<span class="hljs-selector-tag">figure</span>,<span class="hljs-selector-tag">form</span>,<span class="hljs-selector-tag">fieldset</span>,<span class="hljs-selector-tag">legend</span>,<span class="hljs-selector-tag">input</span>,<span class="hljs-selector-tag">textarea</span>,<span class="hljs-selector-tag">button</span>,<span class="hljs-selector-tag">p</span>,<span class="hljs-selector-tag">blockquote</span>,<span class="hljs-selector-tag">th</span>,<span class="hljs-selector-tag">td</span>,pre,xmp&#123;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>&#125;<br><span class="hljs-selector-tag">body</span>,<span class="hljs-selector-tag">input</span>,<span class="hljs-selector-tag">textarea</span>,<span class="hljs-selector-tag">button</span>,select,pre,xmp,tt,<span class="hljs-selector-tag">code</span>,<span class="hljs-selector-tag">kbd</span>,<span class="hljs-selector-tag">samp</span>&#123;<span class="hljs-attribute">line-height</span>:<span class="hljs-number">1.5</span>;<span class="hljs-attribute">font-family</span>:tahoma,arial,<span class="hljs-string">&quot;Hiragino Sans GB&quot;</span>,simsun,sans-serif&#125;<br><span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>,small,big,<span class="hljs-selector-tag">input</span>,<span class="hljs-selector-tag">textarea</span>,<span class="hljs-selector-tag">button</span>,select&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">100%</span>&#125;<br><span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>&#123;<span class="hljs-attribute">font-family</span>:tahoma,arial,<span class="hljs-string">&quot;Hiragino Sans GB&quot;</span>,<span class="hljs-string">&quot;微软雅黑&quot;</span>,simsun,sans-serif&#125;<br><span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>,<span class="hljs-selector-tag">b</span>,<span class="hljs-selector-tag">strong</span>&#123;<span class="hljs-attribute">font-weight</span>:normal&#125;<br><span class="hljs-selector-tag">address</span>,<span class="hljs-selector-tag">cite</span>,<span class="hljs-selector-tag">dfn</span>,<span class="hljs-selector-tag">em</span>,<span class="hljs-selector-tag">i</span>,optgroup,<span class="hljs-selector-tag">var</span>&#123;<span class="hljs-attribute">font-style</span>:normal&#125;<br><span class="hljs-selector-tag">table</span>&#123;<span class="hljs-attribute">border-collapse</span>:collapse;<span class="hljs-attribute">border-spacing</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">text-align</span><span class="hljs-selector-pseudo">:left</span>&#125;<br><span class="hljs-selector-tag">caption</span>,<span class="hljs-selector-tag">th</span>&#123;<span class="hljs-attribute">text-align</span>:inherit&#125;<br><span class="hljs-selector-tag">ul</span>,<span class="hljs-selector-tag">ol</span>,<span class="hljs-selector-tag">menu</span>&#123;<span class="hljs-attribute">list-style</span>:none&#125;<br><span class="hljs-selector-tag">fieldset</span>,<span class="hljs-selector-tag">img</span>&#123;<span class="hljs-attribute">border</span>:<span class="hljs-number">0</span>&#125;<br><span class="hljs-selector-tag">img</span>,<span class="hljs-selector-tag">object</span>,<span class="hljs-selector-tag">input</span>,<span class="hljs-selector-tag">textarea</span>,<span class="hljs-selector-tag">button</span>,select&#123;<span class="hljs-attribute">vertical-align</span>:middle&#125;<br><span class="hljs-selector-tag">article</span>,<span class="hljs-selector-tag">aside</span>,<span class="hljs-selector-tag">footer</span>,<span class="hljs-selector-tag">header</span>,<span class="hljs-selector-tag">section</span>,<span class="hljs-selector-tag">nav</span>,<span class="hljs-selector-tag">figure</span>,<span class="hljs-selector-tag">figcaption</span>,<span class="hljs-selector-tag">hgroup</span>,<span class="hljs-selector-tag">details</span>,<span class="hljs-selector-tag">menu</span>&#123;<span class="hljs-attribute">display</span>:block&#125;<br><span class="hljs-selector-tag">audio</span>,<span class="hljs-selector-tag">canvas</span>,<span class="hljs-selector-tag">video</span>&#123;<span class="hljs-attribute">display</span>:inline-block;*<span class="hljs-attribute">display</span>:inline;*zoom:<span class="hljs-number">1</span>&#125;<br><span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-pseudo">:before</span>,<span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-tag">q</span><span class="hljs-selector-pseudo">:before</span>,<span class="hljs-selector-tag">q</span><span class="hljs-selector-pseudo">:after</span>&#123;<span class="hljs-attribute">content</span>:<span class="hljs-string">&quot;\0020&quot;</span>&#125;<br><span class="hljs-selector-tag">textarea</span>&#123;<span class="hljs-attribute">overflow</span>:auto;<span class="hljs-attribute">resize</span>:vertical&#125;<br><span class="hljs-selector-tag">input</span>,<span class="hljs-selector-tag">textarea</span>,<span class="hljs-selector-tag">button</span>,select,<span class="hljs-selector-tag">a</span>&#123;<span class="hljs-attribute">outline</span>:<span class="hljs-number">0</span> none;<span class="hljs-attribute">border</span>: none;&#125;<br><span class="hljs-selector-tag">button</span>::-moz-focus-inner,input::-moz-focus-inner&#123;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">border</span>:<span class="hljs-number">0</span>&#125;<br><span class="hljs-selector-tag">mark</span>&#123;<span class="hljs-attribute">background-color</span>:transparent&#125;<br><span class="hljs-selector-tag">a</span>,<span class="hljs-selector-tag">ins</span>,s,u,<span class="hljs-selector-tag">del</span>&#123;<span class="hljs-attribute">text-decoration</span>:none&#125;<br><span class="hljs-selector-tag">sup</span>,sub&#123;<span class="hljs-attribute">vertical-align</span>:baseline&#125;<br><span class="hljs-selector-tag">html</span> &#123;<span class="hljs-attribute">overflow-x</span>: hidden;<span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<span class="hljs-attribute">font-size</span>: <span class="hljs-number">50px</span>;-webkit-tap-highlight-<span class="hljs-attribute">color</span>: transparent;&#125;<br><span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">font-family</span>: Arial, <span class="hljs-string">&quot;Microsoft Yahei&quot;</span>, <span class="hljs-string">&quot;Helvetica Neue&quot;</span>, Helvetica, sans-serif;<span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;<span class="hljs-attribute">font-size</span>: .<span class="hljs-number">28em</span>;<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1</span>;-webkit-text-size-adjust: none;&#125;<br>hr &#123;<span class="hljs-attribute">height</span>: .<span class="hljs-number">02rem</span>;<span class="hljs-attribute">margin</span>: .<span class="hljs-number">1rem</span> <span class="hljs-number">0</span>;<span class="hljs-attribute">border</span>: medium none;<span class="hljs-attribute">border-top</span>: .<span class="hljs-number">02rem</span> solid <span class="hljs-number">#cacaca</span>;&#125;<br><span class="hljs-selector-tag">a</span> &#123;<span class="hljs-attribute">color</span>: <span class="hljs-number">#25a4bb</span>;<span class="hljs-attribute">text-decoration</span>: none;&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="border"><a href="#border" class="headerlink" title="border"></a>border</h3><blockquote>
+<p>引入border.css文件<code>import &#39;./assets/styles/border.css&#39;</code>，解决移动端1px问题</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@charset</span> <span class="hljs-string">&quot;utf-8&quot;</span>;<br><span class="hljs-selector-class">.border</span>,<br><span class="hljs-selector-class">.border-top</span>,<br><span class="hljs-selector-class">.border-right</span>,<br><span class="hljs-selector-class">.border-bottom</span>,<br><span class="hljs-selector-class">.border-left</span>,<br><span class="hljs-selector-class">.border-topbottom</span>,<br><span class="hljs-selector-class">.border-rightleft</span>,<br><span class="hljs-selector-class">.border-topleft</span>,<br><span class="hljs-selector-class">.border-rightbottom</span>,<br><span class="hljs-selector-class">.border-topright</span>,<br><span class="hljs-selector-class">.border-bottomleft</span> &#123;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;\0020&quot;</span>;<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br><span class="hljs-comment">/* border</span><br><span class="hljs-comment"> * 因，边框是由伪元素区域遮盖在父级</span><br><span class="hljs-comment"> * 故，子级若有交互，需要对子级设置</span><br><span class="hljs-comment"> * 定位 及 z轴</span><br><span class="hljs-comment"> */</span><br><span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">box-sizing</span>: border-box;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;<br>&#125;<br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">1px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">100%</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">100%</span>;<br>&#125;<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max--moz-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">-webkit-max-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">max-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">143dpi</span>), (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">1.49dppx</span>) &#123;<br>    <span class="hljs-comment">/* 默认值，无需重置 */</span><br>&#125;<br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min--moz-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max--moz-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-max-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">min-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">144dpi</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">239dpi</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">1.5dppx</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">2.49dppx</span>) &#123;<br>    <span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>        <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;<br>        <span class="hljs-attribute">height</span>: <span class="hljs-number">200%</span>;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(.<span class="hljs-number">5</span>);<br>    &#125;<br>    <span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(.<span class="hljs-number">5</span>);<br>    &#125;<br>    <span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleX</span>(.<span class="hljs-number">5</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min--moz-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">min-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">240dpi</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">2.5dppx</span>) &#123;<br>    <span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>        <span class="hljs-attribute">width</span>: <span class="hljs-number">300%</span>;<br>        <span class="hljs-attribute">height</span>: <span class="hljs-number">300%</span>;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(.<span class="hljs-number">33333</span>);<br>    &#125;<br>    <span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(.<span class="hljs-number">33333</span>);<br>    &#125;<br>    <span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>    <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br>    <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleX</span>(.<span class="hljs-number">33333</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="fastclick"><a href="#fastclick" class="headerlink" title="fastclick"></a>fastclick</h3><blockquote>
+<p>300ms click点击延迟的问题，安装fastclick <code>sudo npm i fastclick --save</code> 进行解决，安装到依赖之中，<code>--save</code>不管是开发环境，还是打包成线上版本的代码，都需要使用<code>fastclick</code></p>
+</blockquote>
+<blockquote>
+<p>安装存储在 <code>package.json</code> 中的 <code>dependencies</code> 里面</p>
+</blockquote>
+<blockquote>
+<p>引入fastClick <code>import fastClick from &#39;fastclick&#39;</code> ,使用fastClick <code>fastClick.attach(document.body)</code></p>
+</blockquote>
+<h3 id="iconfont"><a href="#iconfont" class="headerlink" title="iconfont"></a>iconfont</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.iconfont.cn/">https://www.iconfont.cn</a></p>
+</blockquote>
+<p>创建项目</p>
+<h3 id="无用代码删除"><a href="#无用代码删除" class="headerlink" title="无用代码删除"></a>无用代码删除</h3><h3 id="代码提交线上"><a href="#代码提交线上" class="headerlink" title="代码提交线上"></a>代码提交线上</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add .     //本地修改提交到git缓存区<br>git commit -m <span class="hljs-string">&quot;注释&quot;</span>      //本地缓冲区提交的本地仓库<br>git push      //本地代码提交到线上<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">前端开发</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Vue2-5-2-6-3-0%E5%BC%80%E5%8F%91%E5%8E%BB%E5%93%AA%E5%84%BF%E7%BD%91App/" class="category-chain-item">Vue2.5-2.6-3.0开发去哪儿网App</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>第6章 Vue 项目预热</div>
+      <div>http://xiaodongxier.github.io/pages/9cc7c14a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月16日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/8fae16e0.html" title="科技爱好者周刊（第 222 期）：四十年编程感想">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊（第 222 期）：四十年编程感想</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/551730fb.html" title="科技爱好者周刊（第 221 期）：全世界最繁荣的行业">
+                        <span class="hidden-mobile">科技爱好者周刊（第 221 期）：全世界最繁荣的行业</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'f9b883c07d7977c39b3d440711f926ee'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>

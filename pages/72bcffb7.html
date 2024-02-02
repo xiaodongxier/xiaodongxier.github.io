@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源（GitHub: ruanyf&#x2F;weekly），欢迎提交 issue，投稿或推荐你的项目。  封面照片：浦东后滩，上海，2019 刊首语有一句有名的话：“只要站在风口，猪也能飞起来”。事业起飞的简单方法就是，起风时你正好在风口。  共享单车、AR、区块链、人工智能，这些都是过去或者现在的风口。那么，下一个风口在哪里？ 我最近有一个感觉，游戏业将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技爱好者周刊：第78期">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/72bcffb7.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源（GitHub: ruanyf&#x2F;weekly），欢迎提交 issue，投稿或推荐你的项目。  封面照片：浦东后滩，上海，2019 刊首语有一句有名的话：“只要站在风口，猪也能飞起来”。事业起飞的简单方法就是，起风时你正好在风口。  共享单车、AR、区块链、人工智能，这些都是过去或者现在的风口。那么，下一个风口在哪里？ 我最近有一个感觉，游戏业将">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wangbase.com/blogimg/asset/201910/bg2019101707.jpg">
+<meta property="article:published_time" content="2019-10-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-06T08:47:32.861Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="科技爱好者周刊">
+<meta property="article:tag" content="阮一峰">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.wangbase.com/blogimg/asset/201910/bg2019101707.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>科技爱好者周刊：第78期 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="科技爱好者周刊：第78期"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-10-17 00:00" pubdate>
+          2019年10月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">科技爱好者周刊：第78期</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这里记录每周值得分享的科技内容，周五发布。</p>
+<p>本杂志开源（GitHub: <a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly">ruanyf/weekly</a>），欢迎提交 issue，投稿或推荐你的项目。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101707.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>封面照片：浦东后滩，上海，2019</p>
+<h2 id="刊首语"><a href="#刊首语" class="headerlink" title="刊首语"></a>刊首语</h2><p>有一句有名的话：“只要站在风口，猪也能飞起来”。事业起飞的简单方法就是，起风时你正好在风口。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101704.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>共享单车、AR、区块链、人工智能，这些都是过去或者现在的风口。那么，下一个风口在哪里？</p>
+<p><strong>我最近有一个感觉，游戏业将是下一个风口。</strong> 未来几年中，很可能会有新型游戏诞生，引爆整个市场。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101705.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一家美国游戏公司的 CEO，最近发表<a target="_blank" rel="noopener" href="https://www.fastcompany.com/90414307/is-gaming-more-important-than-artificial-intelligence">演讲</a>，提到“游戏将比人工智能更重要”，因为游戏业出现了几个前所未有的新变化。</p>
+<blockquote>
+<p>（1）游戏技术的发展，使得单一游戏可以容纳的玩家，比以往任何时候都要多。</p>
+<p>（2）游戏设备的进化。智能手机的出现，使得人们随时随地都可以进入游戏。</p>
+<p>（3）游戏的开发难度在下降，越来越多的人可以将自己的想法做成游戏。</p>
+<p>（4）随着游戏人口的增长，游戏的社会影响力在不断提升。</p>
+</blockquote>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101706.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>人们玩游戏，以前是为了娱乐，未来不是。你想做的各种事情，未来都可以在游戏中完成：社交、学习、创业、挣钱……更重要的是，有些独一无二的体验，只有在游戏中才能获得。</p>
+<p>现在，游戏已经是一个巨大的产业，最终将会成为国民经济和社会生活的最大部门。如果你想赶上下一个风口，可以现在就投入游戏业。</p>
+<h2 id="优达学城，双十一优惠"><a href="#优达学城，双十一优惠" class="headerlink" title="优达学城，双十一优惠"></a>优达学城，双十一优惠</h2><p>双十一快到了，周刊之前推荐过的<a target="_blank" rel="noopener" href="https://cn.udacity.com/20191111/?utm_source=ruanyifengblog&utm_medium=kol&utm_campaign=20191111">优达学城（Udacity）</a>，进入了全年唯一一次打折季。</p>
+<p>想便宜购买课程和囤课的同学，现在应该是最好的时间。尤其是数据科学方面，近期有很多更新，加入了几门新课。点击<a target="_blank" rel="noopener" href="https://cn.udacity.com/20191111/?utm_source=ruanyifengblog&utm_medium=kol&utm_campaign=20191111">这里</a>，直接进入活动页面，领取优惠券，<strong>价格可以打八折</strong> 。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101710.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="https://cn.udacity.com/20191111/?utm_source=ruanyifengblog&utm_medium=kol&utm_campaign=20191111">优达学城（Udacity）</a>是来自硅谷的在线学习平台，由谷歌无人车之父、Google X 创始人 Sebastian Thrun 创立，专注编程实战为核心的前沿科技教育，包括数据分析、人工智能、无人驾驶等。它在美国有很大的知名度和市场占有率，课程质量得到普遍认可。</p>
+<p>他家的毕业生，毕业以后可以得到独家的 <strong>纳米学位证书</strong> 。这张证书可以直接添加至 LinkedIn 个人简历，与其他国际知名证书具有同等认可。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101709.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="资讯"><a href="#资讯" class="headerlink" title="资讯"></a>资讯</h2><p>1、<a target="_blank" rel="noopener" href="https://www.reuters.com/article/us-space-exploration-spacex/nasa-aims-for-first-manned-spacex-mission-in-first-quarter-2020-idUSKBN1WP1CS">SpaceX 第一次载人飞行</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101103.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>美国宇航局的局长10月10日访问了 SpaceX 公司，与 CEO 马斯克见面，向记者宣布 SpaceX 的第一次载人飞行可能在明年一季度。</p>
+<p>按照原计划，SpaceX 的“龙飞船”通过猎鹰九号火箭（下图），搭载两名宇航员于今年飞往国际空间站。但是今年4月份，龙飞船在地面实验时发生爆炸，导致整个计划推迟，今年已不太可能进行载人飞行了。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101104.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101105.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>美国宇航局的政策是，以后的载人飞行都发包给私人公司，政府不再建造航天飞机，现有的航天飞机都已经退役了。</p>
+<p>目前，美国宇航员进入国际空间站，都通过俄罗斯的飞船，每个座位的价格是8000万美元。SpaceX 公司的龙飞船，迄今只完成过无人的货运任务，向国际空间站运送货物，还没有载人飞行过。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.bbc.com/news/health-49907356">瘫痪病人的装甲</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100405.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100404.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>法国研究人员开发了一套装置，让一个脊髓受伤、四肢瘫痪的男人可以站起来走路，行动完全根据自己的意念控制。</p>
+<p>研究人员首先对病人进行了手术，将两个传感器放置在大脑表面，用来接受脑电波。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100406.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100407.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>脑电波收集完毕以后，传给计算机，将其转变为指令，控制病人身上的机械装置，让病人行走起来。</p>
+<p>整套装置重量达到65公斤，目前支持的动作有限，还只是一个概念产品，只能在实验室内使用。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://www.sciencemag.org/news/2019/09/new-federal-rules-limit-police-searches-family-tree-dna-databases">美国限制 DNA 数据库查询</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100408.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>美国有一些 DNA 数据库网站，允许用户上传自己的 DNA，跟数据库已有的 DNA 进行匹配，找出你的远房亲戚。</p>
+<p>警察有时也会使用这项功能，上传犯罪现场发现的 DNA，用来收集线索，由此还真的抓到了不少犯人。上图就是通过公开的 DNA 数据库，抓到的一个几十年前的连环杀手。</p>
+<p>这样一来，就引发了隐私方面的担忧。即使你本人从未上传过自己的 DNA，只要你的亲戚上传了他的 DNA，照样可以发现你的生物特征。根据一项研究，网上现有的公开 DNA 数据库，已经可以覆盖60%的美国白人。</p>
+<p>美国司法部为此最近发布了规定，限制警察随意搜素 DNA 数据库，只有谋杀、强奸等暴力犯罪，以及识别人类遗体，才可以搜索公开的 DNA 数据库。其他目的的搜索，不能作为证据。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://in.reuters.com/article/uber-copter/uber-makes-jfk-airport-helicopter-taxis-available-to-all-users-idINKBN1WI15X">Uber 直升机</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100702.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Uber 公司在纽约向所有用户推出自有品牌的直升机服务。只要你在曼哈顿下城区，就可以网上预约，从曼哈顿飞向肯尼迪机场。整个行程只需8分钟，费用是每人200至225美元，包括行程两端的地面交通费用。</p>
+<p>同样的行程驾车可能需要一到两个小时，而公共交通则需要50至75分钟。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100703.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100704.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>5、<a target="_blank" rel="noopener" href="https://techcrunch.com/2019/09/25/amazon-sidewalk-is-a-new-long-range-wireless-network-for-your-stuff/">Amazon Sidewalk 协议</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100713.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>亚马逊公司提出，现有的无线通信协议都不理想：蓝牙和Wi-Fi 的覆盖范围太小，5G 的功耗太大且过于复杂。因此，它发明了一种新无线协议，叫做 Amazon Sidewalk。</p>
+<p>这种协议使用900兆赫频率，特点是低带宽、长距离（通信距离可以到一英里），设计用途是连接房屋内部和周围的所有物联网设备。</p>
+<p>亚马逊已经在洛杉矶发送了700台测试设备。一旦有大量接入点，可以创建覆盖面非常广的网络。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100714.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>第一款使用该协议的产品，将是明年发售的狗牌 Ring Fetch。狗戴着这个设备，一旦失去信号，就表示狗已经远离了你，你就会收到警报。只要收到信号，就表示狗在距离你一英里的范围内。</p>
+<p>6、<a target="_blank" rel="noopener" href="https://www.autoblog.com/2019/10/10/2021-toyota-mirai-revealed/">第二代氢燃料汽车</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101101.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101102.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>丰田公司选在10月8日发布第二代 Mirai 燃料汽车，因为10月8日可以写成 1.008，这是氢的原子量。</p>
+<p>该车使用氢气作为燃料，没有污染，也不排放二氧化碳，是目前世界上主要的氢动力汽车。第一代在2014年问世，这次的第二代加大了氢气储存容量，续航里程从500公里增加到了650公里。</p>
+<p>该车在美国的售价是5.85万美元，日本的售价为670万日元（约44.3万人民币），日本政府会补助200万日元。</p>
+<p>7、<a target="_blank" rel="noopener" href="https://www.businessinsider.com/eliud-kipchoge-becomes-first-man-to-run-marathon-in-under-2-hours-2019-10">马拉松进入两小时</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101201.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>肯尼亚的世界纪录保持者埃留德·基普乔格（Eliud Kipchoge）10月12日在维也纳以1:59:40的成绩，成为第一个马拉松进入两小时以内的人！</p>
+<p>这相当于，100米的平均速度为17秒，然后不间断跑422个这样的100米。</p>
+<p>不过，由于这是一次专门为他破记录举办的挑战赛，为了创造记录，有41个人配合他跑，为他挡风和配速，所以国际田联不会承认这个纪录。</p>
+<p>8、<strong>一句话消息</strong></p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://neo4j.com/press-releases/query-language-graph-databases-international-standard/">国际标准化组织 ISO</a> 将图形数据库查询语言 GQL 通过为国际标准，这是继 SQL 以后第二种成为国际标准的数据库查询语言。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/perl6/problem-solving/pull/89">Perl6</a> 改名为 Raku 语言。主要原因是，Perl6 的开发拖得太久，超过10年。而 Perl5 也没停止升级，结果导致两者语法不兼容。现在好了，Perl 语言将永远是这个样子，Perl6 也不必烦恼怎么兼容以前的脚本。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.euractiv.com/section/data-protection/news/debate-rages-in-austria-over-enshrining-use-of-cash-in-the-constitution/">奥地利一个政党</a>要求，宪法加入保障使用现金的条款，防止出现“无现金社会”。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.nbd.com.cn/articles/2019-09-18/1372489.html">东莞市政府</a>预计，2030年该市人口会达到1020万，成为广东省继广州、深圳之后第三个人口破千万的城市。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.latimes.com/politics/story/2019-10-07/blind-person-dominos-ada-supreme-court-disabled">一个美国盲人</a>起诉达美乐批萨，该公司的网站盲人无法使用。达美乐认为法院不该受理，美国最高法院驳回达美乐的请求，表示法律保障盲人使用互联网的权利。</li>
+</ul>
+</blockquote>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100801.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cbsnews.com/news/alexei-leonov-died-cosmonaut-first-man-to-walk-in-space-dead-age-85-cause-of-death-not-released-2019-10-11/">俄罗斯宇航员</a>阿列克谢·列昂诺夫（Alexei Leonov）去世，享年85岁。他是第一个太空行走的宇航员，即第一个进入太空环境的人类。</li>
+</ul>
+</blockquote>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101204.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gizmodo.com/this-self-driving-garbage-can-remembers-to-take-the-tra-1838621440">一家美国创业公司</a>推出自动行驶垃圾桶。该垃圾桶会自动到达目的地，因此可定时挨家挨户上门收垃圾。</li>
+</ul>
+</blockquote>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019100202.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<ul>
+<li>谷歌昨天发布 Pixel 4 手机，后摄像头跟 iPhone 在同一位置，但完全是另一种风格，这是故意的吗……</li>
+</ul>
+</blockquote>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101602.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101603.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><p>1、<a target="_blank" rel="noopener" href="https://bbs.hupu.com/29430250.html">山里拍到了23条蛇</a>（中文）</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019091604.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>9月7号、8号两天去山里玩。两个白天加晚上一共走了30多公里，拍到了23条蛇（虽然一小半都是虎斑颈槽蛇幼蛇，见上图），还有几条逃跑太快，没拍到。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://hackernoon.com/how-android-app-development-became-kotlin-first-bh28929gu">谷歌为什么选择 Kotlin 作为安卓开发语言？</a>（英文）</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019091607.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>谷歌一直在为安卓应用开发寻找 Java 的替代品，这是为什么？Kotlin 哪里超过了 Java？</p>
+<p>3、<a target="_blank" rel="noopener" href="https://broadcast.listennotes.com/the-boring-technology-behind-listen-notes-56697c2e347b">我的一人互联网公司</a>（英文）</p>
+<p>一个开发者介绍，他如何一个人开发和管理20台服务器，运营一个商业网站。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://hufangyun.com/2017/short-url/">短网址（short URL）系统的原理及其实现</a>（中文）</p>
+<p>本文介绍短网址服务的原理，以及如何写一个实现。（@<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/855">Youthink</a> 投稿）</p>
+<p>5、<a target="_blank" rel="noopener" href="https://medium.com/@ideepak.jsd/javascript-new-features-part-1-f1a4360466">JavaScript 的新语法</a>（英文）</p>
+<p>本文介绍一些即将进入 JavaScript 标准的新语法。</p>
+<p>6、<a target="_blank" rel="noopener" href="https://blog.pixelixe.com/2019/09/19/how-a-facebook-rejection-pushed-me-to-start-and-grow-a-profitable-business-in-12-months/">我如何创建一个盈利的副业项目？</a>（英文）</p>
+<p>作者在面试 Facebook 被拒以后，决定做一个项目证明自己。本文记录他构思、开发、推广的过程，发布后4个月产生了1000美元的收入。</p>
+<p>7、<a target="_blank" rel="noopener" href="https://bhavaniravi.com/blog/challenges-in-full-text-search">全文搜索系统入门</a>（英文）</p>
+<p>本文用通俗语言介绍全文搜索的原理。</p>
+<p>8、<a target="_blank" rel="noopener" href="https://careersjs.com/magazine/async-patterns/">async 函数的使用模式</a>（英文）</p>
+<p>async 函数是 JavaScript 语言新增的异步解决方案，本文通过许多例子，介绍它比 Promise 好在哪里。</p>
+<p>9、<a target="_blank" rel="noopener" href="https://www.wired.com/story/apple-a13-bionic-chip-iphone/">苹果的 A13 芯片介绍</a>（英文）</p>
+<p>iPhone11 发布会上，A13 芯片的介绍只占四分钟，但它可能是 iPhone 11 最重要的更新和迄今最好的手机 CPU：“包含85亿个晶体管，六个内核，一个四核图形处理器，一个LTE调制解调器，一个用于机器智能功能的八核神经引擎，每秒可运行超过五万亿次运算。”</p>
+<p>10、<a target="_blank" rel="noopener" href="https://medium.com/@jtomaszewski/15-reasons-why-jira-and-confluence-suck-37507361cbdf">为什么 Jira 难用透了</a>（英文）</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019092002.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Jira 是常用的项目管理工具，本文使用大量图片解释这个工具是多么难用。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>1、<a target="_blank" rel="noopener" href="https://github.com/RameshAditya/scoper">scoper</a></p>
+<p>一个开源工具，可以搜索 Youtube 视频的字幕，返回关键词在视频里面出现的时间。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://instant.page/">instant.page</a></p>
+<p>一个 JS 库，当用户鼠标悬停在链接上面，就开始预加载网页，从而使得用户真正点击的时候，页面瞬间就能加载。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://code.labstack.com/program">labstack</a></p>
+<p>在线的代码运行试验环境（playground），支持15种语言，包括 C、C++、Python、Go、Ruby、Swift等。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://stellarium.org/">Stellarium</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090801.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个开源的天文软件，显示了逼真的 3D 天空，就像用肉眼或望远镜看到的一样，有桌面版和 Web 版。</p>
+<p>5、<a target="_blank" rel="noopener" href="https://s0lly.itch.io/cellivization">S0lly</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090909.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个 Excel 里面的策略游戏《文明》。</p>
+<p>6、<a target="_blank" rel="noopener" href="https://github.com/nuno-faria/tiler">tiler</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090912.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090914.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个将小图像拼成大图像的工具，设计马赛克镶嵌画的最佳工具。</p>
+<p>7、<a target="_blank" rel="noopener" href="https://www.manjaro.org/">manjaro</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090915.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个基于 Arch 的 Linux 发行版，具有 Arch 的灵活性，同时注重对用户的友好性。</p>
+<p>8、<a target="_blank" rel="noopener" href="https://github.com/Windsooon/cherry/">cherry</a></p>
+<p>一个基于机器学习的简易中文文本分类器，可以给出输入的中文内容的类别。</p>
+<p>9、<a target="_blank" rel="noopener" href="https://firefly-iii.org/">Firefly III</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019090919.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个可以自己架设服务的开源财务管理软件。</p>
+<p>10、<a target="_blank" rel="noopener" href="https://projectnaptha.com/">Naptha</a></p>
+<p>一个 Chrome 浏览器插件，可以选中并识别图片里面的文字。</p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>1、<a target="_blank" rel="noopener" href="https://github.com/yifeikong/reverse-interview-zh">反向面试</a></p>
+<p>这个中文仓库收集反向面试的问题，一共50多个，你可以用来问面试官。（@<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/864">ifrontend-xyz</a> 投稿）</p>
+<p>2、<a target="_blank" rel="noopener" href="https://bop.mol.uno/">简明 Python 教程</a></p>
+<p>Python 初学者教程<a target="_blank" rel="noopener" href="https://python.swaroopch.com/">《A Byte of Python》</a>的中文翻译。（@<a target="_blank" rel="noopener" href="https://github.com/ruanyf/free-books/issues/19">vtnil</a> 投稿）</p>
+<p>3、<a target="_blank" rel="noopener" href="http://modernc.gforge.inria.fr/">Modern C（第二版）</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019091902.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>最新出版的 C 语言的英文教材，作者提供免费下载。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://python.quantecon.org/_downloads/pdf/quantitative_economics_with_python.pdf">使用 Python 学习计量经济学</a>（PDF）</p>
+<p>英文电子书，讲解 Python 基本用法，然后用它教计量经济学。</p>
+<p>5、<a target="_blank" rel="noopener" href="https://www.opensourceseeds.org/en">开源种子</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201909/bg2019092401.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>各国法律规定，人工培育的新植物品种可以获得专利，这可能导致植物的遗传资源私有化。</p>
+<p>该项目建立开源种子库，所有种子都带有开源许可证，用户可以自由使用从他们那里取得的种子。</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>1、<a target="_blank" rel="noopener" href="https://www.popularmechanics.com/science/health/a26038/the-blood-of-the-crab/">鲎的血</a></p>
+<p>鲎（发音为“后”）是一种古老的动物，血液中含有铜离子，所以血液是蓝色的。这种蓝色血液的提取物——“鲎试剂”，可以准确、快速地检测人体内部组织是否有细菌感染（比如大肠杆菌）。在制药和食品工业中，可用鲎血液对毒素污染进行监测。</p>
+<p>这种血很贵，每升超过15000美元。制药公司每年都会捕获50万只鲎，采集它们1/3的血液，然后放回海洋。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082509.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082510.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082511.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.freightwaves.com/news/shipping-wind-turbines-is-not-a-breeze">运送风力发电机的叶片</a></p>
+<p>风力发电机越来越多，但是运输发电机的叶片是一件很困难的事情。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082904.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082903.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082901.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082902.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>3、<a target="_blank" rel="noopener" href="https://twitter.com/webperftips/status/405760114499395584">错误响应代码</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201910/bg2019101205.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><code>window.onerror = window.close;</code></p>
+<p>上面这行代码，可以让网页应用有手机 App 的体验。</p>
+<h2 id="文摘"><a href="#文摘" class="headerlink" title="文摘"></a>文摘</h2><p>1、<a target="_blank" rel="noopener" href="https://www.thesun.co.uk/tech/9786114/worlds-deepest-hole-well-to-hell/">世界最深的洞</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082705.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082703.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>俄罗斯北极圈城市摩尔曼斯克附近，有一个特别的地方。地面的这个盖子下面是世界最深的洞。</p>
+<p>20世纪70年代，苏联科学家想要更多地了解地壳，就在摩尔曼斯克附近开始钻探。直到1992年才停止钻探，地下温度已经达到了180度，超过设备能够承受的温度。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082706.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>这个洞的深度超过12000米，比世界最深的马里亚纳海沟还要深。洞的直径为23厘米，如果掉下去，需要大约3.5到4分钟才能到达底部。为了防止有人或动物掉下去，洞口的盖子是焊死的。</p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201908/bg2019082704.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>研究人员发现，地球地壳12公里处有水，以前认为这是不可能的。他们还发现了24种新型单细胞生物，并获得了27亿年前的岩石。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://avc.com/2015/02/the-40-rule/">40% 规则</a></p>
+<p>互联网创业公司有一条40％规则：</p>
+<blockquote>
+<p>年收入增长率 + 营业利润率 应该等于40％。</p>
+</blockquote>
+<p>如果你的年增长率达到100％，那么可以承受60％的亏损。</p>
+<p>如果年增长率为40％，你应该收支平衡。</p>
+<p>如果增长率为20％，你应该有20％的营业利润率。</p>
+<p>如果没有增长，你应该有40％的营业利润率。</p>
+<p>如果业务下降10％，你应该有50％的营业利润率。</p>
+<p>我从来没有见过一个如此简单的规则。我总是觉得如果你快速增长，就可以接受赔钱。随着增长放缓，你必须赚钱并增加利润。现在有这样一个简单的公式，我非常喜欢。</p>
+<h2 id="言论和数字"><a href="#言论和数字" class="headerlink" title="言论和数字"></a>言论和数字</h2><p>1、</p>
+<p>拥有个人网站，就好像拥有了互联网的一小部分。</p>
+<p>– <a target="_blank" rel="noopener" href="https://www.vanschneider.com/a-love-letter-to-personal-websites">《写给个人网站的一封情书》</a></p>
+<p>2、</p>
+<p>如果你已经富裕，2％的收入增长速度就很不错了，可以让你保持并变得更加富裕。</p>
+<p>但是，对于几乎没有收入的人来说，2％的收入增长速度，基本上就代表他们将永远贫穷。</p>
+<p>– <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=20997415">HN 读者</a>评论中国经济增长速度降到6%</p>
+<p>3、</p>
+<p>如果 GDP 增长2％，人口增长1.2％，通货膨胀率为1％，那么人均 GDP 将下降。</p>
+<p>– <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=20997517">同上</a></p>
+<p>4、</p>
+<p>活在世界上，有时候人家不害你，就是对你最大的帮忙。</p>
+<p>– 柯文哲，台北市长</p>
+<p>5、</p>
+<p>雇主最看重的是解决问题的技能，而不是编程语言的熟练程度、调试能力和系统设计。</p>
+<p>新程序员犯下的最大错误就是专注于学习语法，而不是学习如何解决问题。</p>
+<p>– <a target="_blank" rel="noopener" href="https://medium.com/free-code-camp/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2">《解决问题的经验教训》</a></p>
+<p>6、</p>
+<p>我希望程序可以更短，不是以行数或字符衡量，而是以解析树衡量。</p>
+<p>– <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=21232352">保罗·格拉汉姆（Paul Graham）</a>。他已经54岁了，发布了一门自创的计算机语言 Bel。有人问他目的何在，他做了上面的回答。</p>
+<h2 id="招聘信息"><a href="#招聘信息" class="headerlink" title="招聘信息"></a>招聘信息</h2><p>周刊讨论区的<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/798">《谁在招人？》</a>，有大量工作/实习岗位，欢迎查看。</p>
+<p>如果你的团队需要招人，可以免费在那里张贴招聘信息。如果希望发在周刊上，请联系我（Email:  <a href="mailto:&#121;&#x69;&#102;&#x65;&#x6e;&#103;&#x2e;&#114;&#x75;&#97;&#110;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#121;&#x69;&#102;&#x65;&#x6e;&#103;&#x2e;&#114;&#x75;&#97;&#110;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a> ），每条价格 300 元。</p>
+<p>1、<strong>高级前端工程师</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.ersoft.cn/">易路软件</a>聚焦企业人力资源 SaaS 领域，致力于以复杂薪酬计算为核心的“移动互联网+员工服务”研发及运营。工作地点：上海闵行区。</p>
+<p>招聘前端工程师，参与公司产品研发，包括不限于 PC 端、H5、小程序、Node 服务。详细要求和联系方式看<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/798#issuecomment-533874713">这里</a>。</p>
+<p>2、<strong>秘猿科技</strong></p>
+<p>秘猿科技是区块链创业公司，为加密经济提供区块链基础设施和服务。工作地点：杭州或 remote。</p>
+<p>本公司招聘区块链工程师、高级后端工程师、安全和测试工程师。详细要求和联系方式看<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/798#issuecomment-524289916">这里</a>。</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>去年的本周：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/10/weekly-issue-26.html">《周刊第 26 期》</a></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201810/bg2018101201.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>这个周刊每周五发布，同步更新在<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog">阮一峰的网络日志</a>、<a target="_blank" rel="noopener" href="http://weixin.sogou.com/weixin?query=%E9%98%AE%E4%B8%80%E5%B3%B0%E7%9A%84%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97">微信公众号</a>和<a target="_blank" rel="noopener" href="https://yuque.com/ruanyf/share/">语雀</a>。</p>
+<p>微信搜索“阮一峰的网络日志”或者扫描二维码，即可订阅。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2018/bg2018042311.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>（完）</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/" class="category-chain-item">科技爱好者周刊</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/">#科技爱好者周刊</a>
+      
+        <a href="/tags/%E9%98%AE%E4%B8%80%E5%B3%B0/">#阮一峰</a>
+      
+        <a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>科技爱好者周刊：第78期</div>
+      <div>http://xiaodongxier.github.io/pages/72bcffb7.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年10月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月6日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/ca0098d2.html" title="科技爱好者周刊：第79期">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊：第79期</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/2adfefe1.html" title="科技爱好者周刊：第77期">
+                        <span class="hidden-mobile">科技爱好者周刊：第77期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'b16a369ab843d35dcf52d6c02a5312b9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>

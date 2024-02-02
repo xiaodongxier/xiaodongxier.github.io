@@ -1,0 +1,956 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://xiaodongxier.com/favicon.ico">
+  <link rel="icon" href="https://xiaodongxier.com/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WangYongJie">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源，欢迎投稿。另有《谁在招人》服务，发布程序员招聘信息。合作请邮件联系（&amp;#x79;&amp;#105;&amp;#102;&amp;#101;&amp;#x6e;&amp;#x67;&amp;#x2e;&amp;#114;&amp;#x75;&amp;#97;&amp;#x6e;&amp;#64;&amp;#x67;&amp;#x6d;&amp;#x61;&amp;#x69;&amp;#x6c;&amp;#x2e;&amp;#x63;&amp;#111;&amp;#109;）。 封面图 上海市宝山区在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科技爱好者周刊（第 264 期）：Elasticsearch 的启示">
+<meta property="og:url" content="http://xiaodongxier.github.io/pages/88834e7e.html">
+<meta property="og:site_name" content="小东西儿">
+<meta property="og:description" content="这里记录每周值得分享的科技内容，周五发布。 本杂志开源，欢迎投稿。另有《谁在招人》服务，发布程序员招聘信息。合作请邮件联系（&amp;#x79;&amp;#105;&amp;#102;&amp;#101;&amp;#x6e;&amp;#x67;&amp;#x2e;&amp;#114;&amp;#x75;&amp;#97;&amp;#x6e;&amp;#64;&amp;#x67;&amp;#x6d;&amp;#x61;&amp;#x69;&amp;#x6c;&amp;#x2e;&amp;#x63;&amp;#111;&amp;#109;）。 封面图 上海市宝山区在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.beekka.com/blogimg/asset/202307/bg2023072501.webp">
+<meta property="article:published_time" content="2023-07-27T16:00:01.000Z">
+<meta property="article:modified_time" content="2023-08-24T04:47:42.173Z">
+<meta property="article:author" content="WangYongJie">
+<meta property="article:tag" content="科技爱好者周刊">
+<meta property="article:tag" content="阮一峰">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.beekka.com/blogimg/asset/202307/bg2023072501.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>科技爱好者周刊（第 264 期）：Elasticsearch 的启示 - 小东西儿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaodongxier.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":30,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"c21a66ab5099adc6454e09ad1f8301e7","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?c21a66ab5099adc6454e09ad1f8301e7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><link rel="stylesheet" href="/custom/css/index.css"><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "Jf8rVs7oam5pFYhA",ck: "Jf8rVs7oam5pFYhA"})</script><script>LA.init({id:"Jf8rVs7oam5pFYhA",ck:"Jf8rVs7oam5pFYhA"})</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小东西儿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/">
+                <i class="iconfont icon-articles"></i>
+                <span>小记</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://upyun.xiaodongxier.com/blog/bg/10-14-Night.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="科技爱好者周刊（第 264 期）：Elasticsearch 的启示"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        WangYongJie
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-28 00:00" pubdate>
+          2023年7月28日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">科技爱好者周刊（第 264 期）：Elasticsearch 的启示</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这里记录每周值得分享的科技内容，周五发布。</p>
+<p>本杂志<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly">开源</a>，欢迎<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues">投稿</a>。另有<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3222">《谁在招人》</a>服务，发布程序员招聘信息。合作请<a href="mailto:yifeng.ruan@gmail.com">邮件联系</a>（<a href="mailto:&#x79;&#105;&#102;&#101;&#x6e;&#x67;&#x2e;&#114;&#x75;&#97;&#x6e;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x79;&#105;&#102;&#101;&#x6e;&#x67;&#x2e;&#114;&#x75;&#97;&#x6e;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>）。</p>
+<h2 id="封面图"><a href="#封面图" class="headerlink" title="封面图"></a>封面图</h2><p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072501.webp" srcset="/img/loading.gif" lazyload></p>
+<p>上海市宝山区在长江入海口，建了一个“长滩观光塔”，直径25.7米，高180米。特别之处在于，这个塔其实是长江隧道的排风塔，只不过在外部安装了玻璃幕墙，增加了观光、餐厅等功能。（<a target="_blank" rel="noopener" href="https://www.shbsq.gov.cn/shbs/rdtj/20221223/354447.html">via</a>）</p>
+<h2 id="Elasticsearch-的启示"><a href="#Elasticsearch-的启示" class="headerlink" title="Elasticsearch 的启示"></a>Elasticsearch 的启示</h2><p>上月的“红帽事件”，说明开源软件的“客服模式”行不通，我在<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2023/07/weekly-issue-263.html">上一期</a>已经写了自己的看法。</p>
+<p>那么，开源软件如何赚钱呢？<strong>既不能卖软件，又不能卖支持服务，该怎么办呢？</strong></p>
+<p>我一直思考这个问题，觉得行业的发展、个人的前途，都跟它有关系。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072304.webp" srcset="/img/loading.gif" lazyload></p>
+<p>我现在的看法是，<strong>只剩下一种模式是可行的</strong>，开源软件只有这样才能商业化，那就是 Elasticsearch 的模式。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072305.webp" srcset="/img/loading.gif" lazyload></p>
+<p>Elasticsearch 是著名的搜索软件，市场份额非常大，很多大型网站的背后都是它。</p>
+<p>2004年，以色列程序员谢伊·巴农（Shay Banon）为了方便妻子查找菜谱，写了一个简单的搜索工具，这就是 Elasticsearch 的由来。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072306.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一开始，Elasticsearch 采用最宽松的 Apache 许可证，几乎没有任何限制，你怎么用都可以。</p>
+<p>后来，谢伊·巴农拿了风投，成立了公司，雇了程序员，就必须有收入，否则公司就要裁员关门。</p>
+<p><strong>他想到的办法，就是提供云服务</strong>。你不必自己搭建搜索了，我搭建好了，你买了就能用。这样你比较省心，我也有收入了。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072307.webp" srcset="/img/loading.gif" lazyload></p>
+<p>但是，他万万没有想到，这种模式也行不通。原因是<strong>开源软件不是独占性的，如果你的软件太成功，其他人也可以提供服务</strong>，而且卖得更便宜，最终把你打败，拿到更大的市场份额。</p>
+<p>Elasticsearch 倒霉的地方在于，遇到的竞争对手是亚马逊，世界第一的云服务商。</p>
+<p>亚马逊不花一分钱，拿到 Elasticsearch 的代码，搭建搜索服务出售，很快就让原始作者没生意了。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072308.webp" srcset="/img/loading.gif" lazyload></p>
+<p>眼看公司有挂掉的风险，Elasticsearch 做出了一个石破天惊的决定。</p>
+<p>2021年，谢伊·巴农宣布，放弃 Apache 许可证，改用新的许可证：代码依然开源，但是不允许用户销售该软件的云服务，除非你愿意公开整个服务端。（注意，是整个服务端，不仅是搜索的部分。）</p>
+<p>亚马逊明摆着不会接受这个条件，所以新的许可证实质就是不允许亚马逊（也包括谷歌和微软）再卖 Elasticsearch 云服务了。</p>
+<p>作为业界老大，亚马逊当然咽不下这口气。它索性撕破脸，把 Elasticsearch 的代码分叉，开始维护自己的版本，起名为<a target="_blank" rel="noopener" href="https://aws.amazon.com/cn/opensearch-service/">OpenSearch</a>，继续采用 Apache 许可证，让社区无偿使用。双方就对干起来了。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072601.webp" srcset="/img/loading.gif" lazyload></p>
+<p>现在还看不出来谁赢谁输，但是不管怎样，Elasticsearch 有了起码的生存保障，收入稳定下来了。你要用正宗的搜索服务，只有买他家的。</p>
+<p>我认为，<strong>这是目前唯一可行的开源软件商业模式</strong>。</p>
+<p>有人把它叫做“<a target="_blank" rel="noopener" href="https://handbook.opencoreventures.com/open-core-business-model">开源核心模式</a>”：代码的核心功能是开源的，可以免费使用，但是存在某些限制，比如云服务是独家的，或者某些插件和周边工具是闭源的，需要付费。</p>
+<p>目前，采用这种模式的知名开源软件，除了 Elasticsearch，还有 MongoDB。</p>
+<p><strong>开源软件创业，建议就采用这种模式</strong>。你同时维护两个版本：一个是开源的社区版，让大家免费使用，积累用户和口碑；另一个是收费的企业版，拥有更多功能和客服支持。</p>
+<h2 id="科技动态"><a href="#科技动态" class="headerlink" title="科技动态"></a>科技动态</h2><p>1、<a target="_blank" rel="noopener" href="https://www.science.org/content/article/ultrasound-brain-pulses-put-mice-hibernation-state">超声波冬眠</a></p>
+<p>华盛顿大学的研究团队发现，对准老鼠大脑的某个部位发射超声波脉冲，会使得老鼠进入冬眠。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023052901.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这意味着，冬眠可以人工触发。这或许可以用于执行长途太空任务的宇航员，让其在长途旅行中进入冬眠状态。</p>
+<p>不过，有的科学家不认同这个发现，认为这只不过是超声波发射能量，激活了大脑的温度神经元，欺骗大脑认为环境温度升高，从而自动降低了动物体温，让动物进入不活跃状态。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.theverge.com/2023/7/18/23798153/fcc-cyber-trust-mark-biden-security">美国网络可信标志</a></p>
+<p>美国政府宣布，将对联网的家用电器推行“网络可信标志”（下图），表示该设备是信息安全的。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072401.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这个标志带有一个 Logo 和二维码，用户扫描后，会进入详细说明的网页。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072402.webp" srcset="/img/loading.gif" lazyload></p>
+<p>目前，该标志是自愿加入，但也说不准哪一天就变成了强制认证。那时，如果不发给中国公司，就等于是变相的市场壁垒。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://www.wsj.com/amp/articles/surgery-technology-data-black-boxes-a8bc483b">医院黑匣子</a></p>
+<p>一家加拿大公司推出了“医院黑匣子”，类似于飞机的黑匣子，记录手术过程中产生的一切信息，包括视频、音频、仪器数据等等。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202303/bg2023032102.webp" srcset="/img/loading.gif" lazyload></p>
+<p>该设备可以用于事后的手术分析，以减少医疗错误、保障患者安全、提高手术效率，还能用于医生培训。如果手术出错，它有助于了解到底哪一步发生了问题。</p>
+<p>有些医生反对该设备，认为属于对医生的监控，会增加医疗诉讼。为了平息反对意见，该设备目前自动对所有数据进行匿名化处理，即使数据泄露，外界也无法使用。</p>
+<p>4、<a target="_blank" rel="noopener" href="http://www.stdaily.com/index/kejixinwen/202305/ae99861e29034bd59c22a768234af466.shtml">太阳射电望远镜</a></p>
+<p>全世界最大的太阳射电望远镜，在甘孜稻城启用。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072701.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072702.webp" srcset="/img/loading.gif" lazyload></p>
+<p>它由313部天线组成，排列在直径1公里的圆环上。圆环中央是机房和定标塔，用来协调和控制所有天线。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072703.webp" srcset="/img/loading.gif" lazyload></p>
+<p>每一台天线的直径6米，会跟随太阳的方向转动，用来监控太阳活动。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072704.webp" srcset="/img/loading.gif" lazyload></p>
+<p>所有天线协同观测，就能形成虚拟的超大口径天线，从而实现对太阳爆发活动的高精度成像。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072705.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><p>1、<a target="_blank" rel="noopener" href="https://www.businessinsider.com/google-salaries-leaked-data-employees-engineers-sales-cloud-2023-7">泄露的谷歌薪酬数据</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072102.webp" srcset="/img/loading.gif" lazyload></p>
+<p>谷歌内网的一份文档泄漏，里面有详细的员工薪酬数据，本文整理了不同工种的工资最大值、最小值，以及奖金和股票收益。</p>
+<p>2022年，谷歌员工的薪酬中位数为279,802 美元，是科技业薪酬最高的公司之一。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.reddit.com/r/reactjs/comments/154trk7/comment/jsrbysw/">Dan Abramov 宣布离开 Meta 团队</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072706.webp" srcset="/img/loading.gif" lazyload></p>
+<p>著名前端程序员 Dan Abramov 写了15条系列推文，解释他为什么从 Meta 辞职，离开 React 团队。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3289">@hacker0limbo</a> 投稿）</p>
+<p>3、<a target="_blank" rel="noopener" href="https://www.macarthur.me/posts/maps-for-dom-nodes">使用 Map/WeakMap 处理 DOM 节点</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023050602.webp" srcset="/img/loading.gif" lazyload></p>
+<p>Map 和 WeakMap 作为 JS 语言新增的数据结构，很多人不清楚它们的用法。作者给出了一个实际的例子。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://buttondown.email/hillelwayne/archive/when-to-prefer-inheritance-to-composition/">继承与组合</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023050601.webp" srcset="/img/loading.gif" lazyload></p>
+<p>如果你要扩展一个类，可以使用继承（inheritance），也可以使用组合（composition）。本文讨论它们的区别和适用场合。</p>
+<p>5、<a target="_blank" rel="noopener" href="https://johnnysswlab.com/how-branches-influence-the-performance-of-your-code-and-what-can-you-do-about-it/">CPU 对分支代码的影响</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023050610.webp" srcset="/img/loading.gif" lazyload></p>
+<p>本文分析 CPU 怎么处理代码，进而讨论分支语句（if）应该怎么写，执行效率比较高。</p>
+<p>6、<a target="_blank" rel="noopener" href="https://vladimirzdrazil.com/posts/object-keys-keyof-t/">Object.keys() 的返回值类型</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023050802.webp" srcset="/img/loading.gif" lazyload></p>
+<p>本文是 TypeScript 科普文章，解释 Object.keys() 方法的返回值类型，为什么是<code>string[]</code>，而不是<code>(keyof T)[]</code>。</p>
+<p>7、<a target="_blank" rel="noopener" href="https://borretti.me/article/nixos-for-the-impatient">NixOS 安装快速指南</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023051001.webp" srcset="/img/loading.gif" lazyload></p>
+<p>NixOS 是一个 Linux 发行版，它有一个系统配置文件，记录所安装的软件。只要有这个文件，就能还原出一模一样的系统。</p>
+<p>8、<a target="_blank" rel="noopener" href="https://androidblog.a.pinggy.io/">这个博客托管在我的 Android 手机上</a>（英文）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023051002.webp" srcset="/img/loading.gif" lazyload></p>
+<p>作者介绍怎么把安卓手机当作服务器，托管网站。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>1、<a target="_blank" rel="noopener" href="https://github.com/ChrisCavs/aimless.js">Aimless.js</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023052221.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一个生成各种随机值的 JS 库。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://primocms.org/">Primo</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072202.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一个开源的内容管理系统（CMS），作为 WordPress 的替代品而开发，基于 JavaScript 的 Svelte 框架。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh">Link Redirect Trace</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202305/bg2023052510.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一个浏览器插件，显示当前页面的所有重定向跳转。</p>
+<p>4、<a target="_blank" rel="noopener" href="https://github.com/luoxuhai/clang.js">Clang.js</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072707.webp" srcset="/img/loading.gif" lazyload></p>
+<p>在浏览器直接运行 C/C++ 代码。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3297">@luoxuhai</a> 投稿）</p>
+<p>5、<a target="_blank" rel="noopener" href="https://github.com/ppz-pro/mess-reader">mess-reader</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072708.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一个网页的 Epub 阅读器，可以离线使用。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3302">@daGaiGuanYu</a> 投稿）</p>
+<p>6、<a target="_blank" rel="noopener" href="https://www.automa.site/">Automa</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072710.webp" srcset="/img/loading.gif" lazyload></p>
+<p>Chrome 浏览器插件，用来设置任务自动化。另外，Chrome 有内置的<a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/devtools/recorder/">用户行为录制</a>。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3301">@dllen</a> 投稿）</p>
+<p>7、<a target="_blank" rel="noopener" href="https://eigenmiao.com/yanhuo">Rickrack</a>（焰火十二卷）</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072711.webp" srcset="/img/loading.gif" lazyload></p>
+<p>开源的调色板软件，提供多种色彩搭配功能，适用于各种设计场景。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3306">@eigenmiao</a> 投稿）</p>
+<p>8、<a target="_blank" rel="noopener" href="http://davidjbradshaw.github.io/iframe-resizer/">iFrame Resizer</a></p>
+<p>一个控制 iframe 窗口的 JS 库，可以根据加载网页的内容，调整 iframe 窗口的高度和宽度，并提供许多其他功能。</p>
+<p>9、<a target="_blank" rel="noopener" href="https://github.com/standardebooks/tools">Standard Ebooks</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202301/bg2023011103.webp" srcset="/img/loading.gif" lazyload></p>
+<p>Epub 电子书生成工具，参见<a target="_blank" rel="noopener" href="https://standardebooks.org/contribute/producing-an-ebook-step-by-step">教程</a>。</p>
+<p>10、<a target="_blank" rel="noopener" href="https://tablane.net/">Tablane</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202301/bg2023011206.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一个<a target="_blank" rel="noopener" href="https://github.com/Tablane/tablane">开源</a>的 Web 软件，用来进行任务管理。它实际上是一个列表管理软件，任何可以表示成列表的东西，都可以用它管理。</p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>1、<a target="_blank" rel="noopener" href="https://satellitemap.space/">Starlink 卫星覆盖图</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202304/bg2023042907.webp" srcset="/img/loading.gif" lazyload></p>
+<p>该网站实时显示 Starlink 卫星的位置，目前有4000多颗。</p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.ghostlystock.com/">GhostlyStock</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202210/bg2022100101.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这个网站是 AI 图片的搜索引擎，搜到的所有图片都是人工智能生成的。</p>
+<p>想法是好的，但是图片有点少，搜索效果不理想。</p>
+<p>3、<a target="_blank" rel="noopener" href="https://codenews.cc/chatgpt">ChatGPT 中文在线</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072709.webp" srcset="/img/loading.gif" lazyload></p>
+<p>ChatGPT 的使用页面，并且收集了相关资源。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3307">@jqsl2012</a> 投稿）</p>
+<p>4、<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3287">全球音乐体育大全</a></p>
+<p>家里的娃学习打击乐，经常需要到 Youtube 平台搜索一些曲子，观看学习。作者就写了这个微信小程序，可以搜索和下载。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3287">@rmrf</a> 投稿）</p>
+<p>5、<a target="_blank" rel="noopener" href="https://gpython.aibang.run/">GPYTHON</a></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072712.webp" srcset="/img/loading.gif" lazyload></p>
+<p>AI 辅助的 Python 学习网站，在线练习编码。（<a target="_blank" rel="noopener" href="https://github.com/ruanyf/weekly/issues/3308">@stanxing</a> 投稿）</p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>1、<a target="_blank" rel="noopener" href="https://beyondrange.wordpress.com/2016/08/03/pic-de-finestrelles-pic-gaspard-ecrins-443-km/">最长的视线</a></p>
+<p>2016年7月16日，一位摄影师在西班牙海拔2820米的比利牛斯山脉上，拍到了一张照片（下图），可以看到远处的阿尔卑斯山。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202302/bg2023020819.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这两个地点相隔443公里，被吉尼斯认证为世界最长的视线，没有人看得比这更远了。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202302/bg2023020820.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202302/bg2023020821.webp" srcset="/img/loading.gif" lazyload></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.sohu.com/a/677626814_121124374">芭比长城</a></p>
+<p>生成式 AI 诞生以后，只有想不到的图片，没有生成不了的图片。</p>
+<p>最近，电影《芭比》上映，一位国外建筑师不禁突发奇想，如果长城变成芭比娃娃风格，会是什么样？下面就是 AI 生成的图片。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072719.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072720.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072721.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="文摘"><a href="#文摘" class="headerlink" title="文摘"></a>文摘</h2><p>1、<a target="_blank" rel="noopener" href="https://www.worksinprogress.co/issue/how-polyester-bounced-back/">涤纶如何重新流行</a></p>
+<p>涤纶（学名：聚酯纤维）是一种化学纤维，诞生于上个世纪20年代，曾经流行一时。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072713.webp" srcset="/img/loading.gif" lazyload></p>
+<p>那时，人们把它看作一种神奇面料。</p>
+<p>它不会起皱，因此不必熨烫，而且很柔软，也容易上色，能够生产出各种鲜艳的布料，非常适合拍照片和上电视。</p>
+<p>更重要的是，它很便宜，也不容易磨损，可以穿很久。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072714.webp" srcset="/img/loading.gif" lazyload></p>
+<p>但是，到了20世纪80年代，它突然不流行了。</p>
+<p>原因是它会抽丝和起球，时间一长，表面就变得毛绒绒。</p>
+<p>最要命的是，它不透气，穿着时间一长，你会感到很闷，并且会因汗水而发臭。人们渐渐形成一种印象，只有收入低的人才会穿涤纶服装。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072716.webp" srcset="/img/loading.gif" lazyload></p>
+<p>涤纶的价格因此一落千丈。正当人们以为，涤纶服装将被淘汰时，事情发生了变化。</p>
+<p>进入21世纪以后，健身变得越来越流行，人们喜欢户外跑步、在健身房锻炼、爬山和远足。运动服装公司很快意识到，涤纶很适合户外服装，因为它不透气，所以保温效果好；改造以后不吸水，所以可以快干；它重量轻，所以满足运动服装的轻便要求；它不易磨损，所以足够坚固，适合户外环境。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072717.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一旦涤纶的市场重新出现以后，运动服装公司就使用最新的材料科学，进一步改造涤纶。</p>
+<p>他们把涤纶编织成羊毛的结构，使其看上去像羊毛材料，但是更轻、更保温、更排水。这使得涤纶迅速占领了户外服装市场。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072718.webp" srcset="/img/loading.gif" lazyload></p>
+<p>涤纶的一大缺点是排斥水，这注定它不适合直接接触人体，直接套在皮肤外面会汗流浃背，很不舒服。</p>
+<p>研究人员开始研究，能否增加涤纶的吸水性。经过几年的努力，终于成功推出了吸湿排汗的涤纶纤维，采用的办法是在纤维中间增加圆孔，让纤维变成空心，因此就具有毛细管的吸水效应，可以将汗水排走。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202307/bg2023072715.webp" srcset="/img/loading.gif" lazyload></p>
+<p>一旦解决了吸水问题，涤纶就非常适合做运动背心和运动内衣。它又薄又轻，柔软耐用，不会产生异味，而且可以机洗。</p>
+<p>随着运动人口的增多，以及涤纶的价格优势，今天，涤纶是世界排名第一的纺织面料，占全球纤维消费量的一半以上，约为第二名棉花的两倍。年产量接近5800万吨，是上世纪80年代的10倍多。再没有人抱怨它的外观和穿着感受，事实上人们变得太喜欢涤纶服装了。</p>
+<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>1、</p>
+<p>在任何一个领域，刻意练习都是造就顶尖人才的方法，也是顶尖人才用来保持领先地位的方法。如果你想成为专业人士，刻意训练自己是绝对必不可少的。</p>
+<p>– <a target="_blank" rel="noopener" href="https://fs.blog/deliberate-practice-guide/">《刻意练习终极指南》</a></p>
+<p>2、</p>
+<p>如果你是一个高级工程师或者高级管理者，你所做的一切都有很高的机会成本，所以你选择的工作必须很重要。</p>
+<p>– <a target="_blank" rel="noopener" href="https://smyachenkov.com/posts/book-review-the-staff-engineers-path/">《高级工程师的道路》</a></p>
+<p>3、</p>
+<p>越来越多的人觉得，成年的价值正在下降，而且成年的年龄也在被推迟。结果，我们的社会变得越来越幼稚化。</p>
+<p>– <a target="_blank" rel="noopener" href="https://iq.hse.ru/en/news/219491658.html">《幼稚主义是一种常态》</a></p>
+<p>4、</p>
+<p>以前是我们学习计算机的语言，以后是让计算机学习我们的语言。</p>
+<p>– <a target="_blank" rel="noopener" href="https://alphalist.com/podcast/78-stephen-wolfram-founder-ceo-of-wolfram-research">Stephen Wolfram</a>，著名计算机学家</p>
+<h2 id="历史上的本周"><a href="#历史上的本周" class="headerlink" title="历史上的本周"></a>历史上的本周</h2><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2022/08/weekly-issue-217.html">沙特的新未来城</a>（2022 #217）</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2021/07/weekly-issue-167.html">广告拦截器太过分了</a>（2021 #167）</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2020/07/weekly-issue-117.html">我不想让你记住我的脸</a>（2020 #117）</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/08/weekly-issue-67.html">复杂系统无法维护，侏罗纪公园必定失败</a>（2019 #67）</p>
+<p>（完）</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/" class="category-chain-item">科技爱好者周刊</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A7%91%E6%8A%80%E7%88%B1%E5%A5%BD%E8%80%85%E5%91%A8%E5%88%8A/">#科技爱好者周刊</a>
+      
+        <a href="/tags/%E9%98%AE%E4%B8%80%E5%B3%B0/">#阮一峰</a>
+      
+        <a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>科技爱好者周刊（第 264 期）：Elasticsearch 的启示</div>
+      <div>http://xiaodongxier.github.io/pages/88834e7e.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>WangYongJie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月28日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年8月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/pages/5645857a.html" title="科技爱好者周刊（第 265 期）：WiFi 的后面是 LiFi">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技爱好者周刊（第 265 期）：WiFi 的后面是 LiFi</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/pages/4c42fb11.html" title="科技爱好者周刊（第 263 期）：开源软件如何赚钱？">
+                        <span class="hidden-mobile">科技爱好者周刊（第 263 期）：开源软件如何赚钱？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"771107a3f86dcfbf0133","clientSecret":"4deee869964d890eee5f2bd6dd5f4713a4be642e","repo":"xiaodongxier.github.io","owner":"xiaodongxier","admin":["xiaodongxier"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '9e971c8e32b4bc9cadca03b65cfaa2b8'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/Jf8rVs7oam5pFYhA/quote.js?theme=#3C4858,#333333,#3C4858,#333333,#FFFFFF,#1690FF,16&f=14&display=0,0,1,1,0,0,1,1"></script><script src="/custom/js/tongji.js"></script><!-- hexo injector body_end end --></body>
+</html>
